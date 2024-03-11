@@ -28,7 +28,7 @@ def schedule_management_tool(question) -> str:
         "Content-Type": "application/json",
         "X-Auth-Type": "Salesforce",
         "X-Auth-Origin": "Production",
-        "Authorization": "Bearer 00D1U0000013dOX!ARYAQNkaCqvvk4W4GLlC2jlGg.UxLmH2dQaHrzUNOMzmjTstwYDKuz4_STvyz24kaqjZJQQlMWo1ZNNzUODgB0LJzZ5s8pL2",
+        "Authorization": "Bearer 00D1U0000013dOX!ARYAQE0dFdIlvO3.NeqtT60L78BV92_qX9St_KMdRLFpGA12daysmmtGN3WhBf_B8HulH_63CndltZxMEPclFwopXJ6bzvpe",
     }
     response = requests.post(url,
                              headers=headers,
