@@ -18,15 +18,8 @@ agent = create_react_agent(llm, tools, prompt)
 
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
-# question = "Who was the last tech of WO-00000450 ? "
-# question = "What is WO-00009920 schedule ?"
-# question = "How to install Pump P-0001 ?"
-# question = "Who was the last tech of WO-00000450 and What is WO-00009920 schedule ?"
-# question = "Who was the last tech of WO-00000450 and How to install Pump P-0001 ?"
-# question = "What is WO-00009920 schedule and How to install Pump P-0001 ?"
 question = "What is the order type and turn around time for WO-00000450 and what is WO-00009920 schedule and " \
            "I have spent 4 years how much PTO will I get ?"
-# question = "I have spent 4 years how much PTO will I get ?"
 
 answer = agent_executor.invoke(
     {

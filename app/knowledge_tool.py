@@ -20,8 +20,7 @@ collection_name = "benefits_collection"
 local_directory = "benefits_vect_embedding"
 persist_directory = os.path.join(os.getcwd(), local_directory)
 
-openai_key=os.getenv("open_ai_key")
-embeddings = OpenAIEmbeddings(openai_api_key=openai_key)
+embeddings = OpenAIEmbeddings()
 vectDB = Chroma.from_documents(splitData,
                                embeddings,
                                collection_name=collection_name,
@@ -29,8 +28,7 @@ vectDB = Chroma.from_documents(splitData,
                                )
 vectDB.persist()
 
-ks = ConversationalRetrievalChain.from_llm(
-    ChatOpenAI(openai_api_key=openai_key, temperature=0, model_name="gpt-3.5-turbo"), vectDB.as_retriever())
+ks = ConversationalRetrievalChain.from_llm(ChatOpenAI(model_name="gpt-3.5-turbo"), vectDB.as_retriever())
 
 
 @tool
