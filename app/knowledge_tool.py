@@ -7,6 +7,9 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.embeddings import OpenAIEmbeddings
 from langchain_community.vectorstores.chroma import Chroma
 
+from dotenv import load_dotenv
+load_dotenv()
+
 loader = PyPDFLoader("benefits.pdf")
 pdfData = loader.load()
 
@@ -17,7 +20,7 @@ collection_name = "benefits_collection"
 local_directory = "benefits_vect_embedding"
 persist_directory = os.path.join(os.getcwd(), local_directory)
 
-openai_key = "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"
+openai_key=os.getenv("open_ai_key")
 embeddings = OpenAIEmbeddings(openai_api_key=openai_key)
 vectDB = Chroma.from_documents(splitData,
                                embeddings,
