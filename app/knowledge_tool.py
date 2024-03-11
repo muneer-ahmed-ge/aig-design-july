@@ -1,4 +1,3 @@
-import os
 from langchain_core.tools import tool
 from langchain.text_splitter import TokenTextSplitter
 from langchain.chains import ConversationalRetrievalChain
@@ -10,7 +9,7 @@ from langchain_community.vectorstores.chroma import Chroma
 from dotenv import load_dotenv
 load_dotenv()
 
-loader = PyPDFLoader("benefits.pdf")
+loader = PyPDFLoader("/Users/muahmed/MT/ai/aig-design-july/resources/benefits.pdf")
 pdfData = loader.load()
 
 text_splitter = TokenTextSplitter(chunk_size=1000, chunk_overlap=0)
@@ -18,7 +17,7 @@ splitData = text_splitter.split_documents(pdfData)
 
 collection_name = "benefits_collection"
 local_directory = "benefits_vect_embedding"
-persist_directory = os.path.join(os.getcwd(), local_directory)
+persist_directory = "/Users/muahmed/MT/ai/aig-design-july/resources/benefits_vect_embedding"
 
 embeddings = OpenAIEmbeddings()
 vectDB = Chroma.from_documents(splitData,
