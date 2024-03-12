@@ -22,12 +22,37 @@ question = "What is the most common Line Type of Work Order Line"  # SELECT SVMX
 question = "What are the Line Types for WO-00000450 ?"
 
 docs = db.similarity_search(query=question, k=5)
+
+dict = {'SVMXC__Service_Order__c': [], 'SVMXC__Service_Order_Line__c':[],
+        'SVMXC__Service_Group_Members__c':[], 'SVMXC__Installed_Product__c' : []}
 for d in docs:
     e = d.page_content
     idx1 = e.find("ObjectName: ")
     idx2 = e.find("FieldName: ")
     object = e[idx1 + len("FieldName: ") + 1: idx2]
+    object = object.replace("\n", "")
     idx1 = e.find("FieldName: ")
     idx2 = e.find("Metadata:")
     field = e[idx1 + len("FieldName: "): idx2]
-    print(object + "." + field)
+    field = field.replace("\n", "")
+    dict.get(object).append(field)
+
+service_order = ""
+for e in dict.get("SVMXC__Service_Order__c"):
+    service_order += "\"" + e + "\" VARCHAR, \n"
+print(service_order)
+
+service_order_line = ""
+for e in dict.get("SVMXC__Service_Order_Line__c"):
+    service_order_line += "\"" + e + "\" VARCHAR, \n"
+print(service_order_line)
+
+group_members = ""
+for e in dict.get("SVMXC__Service_Group_Members__c"):
+    group_members += "\"" + e + "\" VARCHAR, \n"
+print(group_members)
+
+installed_product = ""
+for e in dict.get("SVMXC__Installed_Product__c"):
+    installed_product += "\"" + e + "\" VARCHAR, \n"
+print(installed_product)
