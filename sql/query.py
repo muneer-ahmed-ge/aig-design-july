@@ -7,6 +7,13 @@ from langchain_community.embeddings import AzureOpenAIEmbeddings
 from langchain_community.vectorstores.chroma import Chroma
 from dotenv import load_dotenv
 
+question = "Who was the last technician for WO-00000450 ?"
+question = "Find out WO-00000450 total Work Order Lines of Line Type = 'Labor' ?"
+question = "What is the most common Line Type of Work Order Line"  # SELECT SVMXC__Line_Type__c, COUNT(*) as count FROM SVMXC__Service_Order_Line__c GROUP BY SVMXC__Line_Type__c ORDER BY count DESC LIMIT 1
+question = "What are the Line Types for WO-00000450 ?"
+question = "Who was the last technician for WO-00000450 ?"
+question = "How many work order exists ?"
+
 load_dotenv()
 embeddings = AzureOpenAIEmbeddings(
     azure_endpoint=os.getenv("AZURE_EMBEDDING_OPENAI_ENDPOINT"),
@@ -17,13 +24,6 @@ embeddings = AzureOpenAIEmbeddings(
 
 persist_directory = "/Users/muahmed/MT/ai/aig-design-july/resources/metadata_collection"
 db = Chroma(persist_directory=persist_directory, embedding_function=embeddings, collection_name="metadata_collection")
-
-question = "Who was the last technician for WO-00000450 ?"
-question = "Who was the last technician for WO-00000450 ?"
-question = "Find out WO-00000450 total Work Order Lines of Line Type = 'Labor' ?"
-question = "How many work order exists ?"  # SELECT COUNT(*) FROM SVMXC__Service_Order__c
-question = "What is the most common Line Type of Work Order Line"  # SELECT SVMXC__Line_Type__c, COUNT(*) as count FROM SVMXC__Service_Order_Line__c GROUP BY SVMXC__Line_Type__c ORDER BY count DESC LIMIT 1
-question = "What are the Line Types for WO-00000450 ?"
 
 docs = db.similarity_search(query=question, k=5)
 
@@ -130,12 +130,6 @@ PROMPT = PromptTemplate(
 llm = AzureChatOpenAI(deployment_name="SMAX-AI-Dev-GPT4-32")
 
 chain = create_sql_query_chain(llm, db, prompt=PROMPT)
-
-question = "How many work order exists ?"  # SELECT COUNT(*) FROM SVMXC__Service_Order__c
-question = "What are the Line Types for WO-00000450 ?"
-question = "What is the most common Line Type of Work Order Line"  # SELECT SVMXC__Line_Type__c, COUNT(*) as count FROM SVMXC__Service_Order_Line__c GROUP BY SVMXC__Line_Type__c ORDER BY count DESC LIMIT 1
-question = "Who was the last technician for WO-00000450 ?"
-question = "Find out WO-00000450 total Work Order Lines of Line Type = 'Labor' ?"
 
 response = chain.invoke({"question": question})
 
