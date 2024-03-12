@@ -14,9 +14,7 @@ question = "What are the Line Types for WO-00000450 ?"
 question = "Find out WO-00000450 total Work Order Lines of Line Type = 'Labor' ?"
 question = "Who was the last technician for WO-00000450 ?"
 question = "How many work order exists ?"
-question = "Have there been any machiine failures recently"
-
-
+question = "The last field tech working on the machine was who?"
 
 load_dotenv()
 embeddings = AzureOpenAIEmbeddings(
@@ -144,7 +142,7 @@ chain = (
 
 sql_query = chain.invoke({"input": question})
 
-print(sql_query)
+print("sql_query = " + sql_query)
 
 connection = sqlite3.connect("/Users/muahmed/MT/ai/aig-design-july/resources/sample.db")
 cursor = connection.cursor()
