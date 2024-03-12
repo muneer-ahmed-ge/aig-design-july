@@ -1,18 +1,19 @@
 import os
-from langchain.chains import create_sql_query_chain
-from langchain.sql_database import SQLDatabase
 from langchain_community.chat_models import AzureChatOpenAI
+from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import PromptTemplate
 from langchain_community.embeddings import AzureOpenAIEmbeddings
 from langchain_community.vectorstores.chroma import Chroma
 from dotenv import load_dotenv
+from langchain_core.runnables import RunnablePassthrough
 
-question = "Who was the last technician for WO-00000450 ?"
+
 question = "What is the most common Line Type of Work Order Line"
 question = "Who was the last technician for WO-00000450 ?"
 question = "What are the Line Types for WO-00000450 ?"
 question = "How many work order exists ?"
 question = "Find out WO-00000450 total Work Order Lines of Line Type = 'Labor' ?"
+question = "Who was the last technician for WO-00000450 ?"
 
 load_dotenv()
 embeddings = AzureOpenAIEmbeddings(
@@ -119,18 +120,25 @@ DO NOT make any DML statements (INSERT, UPDATE, DELETE, DROP etc.) to the databa
 If the question does not seem related to the database, just return "I don't know" as the answer.
 
 {input}
+
+Return the result as a SQL Query
 """ % (service_order, service_order_line, group_members, installed_product)
 
-db = SQLDatabase.from_uri("sqlite:////Users/muahmed/MT/ai/aig-design-july/resources/sample.db")
-
-PROMPT = PromptTemplate(
+prompt = PromptTemplate(
     input_variables=[], template=_PROMPT_TEMPLATE
 )
 
 llm = AzureChatOpenAI(deployment_name="SMAX-AI-Dev-GPT4-32")
 
-chain = create_sql_query_chain(llm, db, prompt=PROMPT)
+output_parser = StrOutputParser()
 
-sql_query = chain.invoke({"question": question})
+chain = (
+    {"input": RunnablePassthrough()}
+    | prompt
+    | llm
+    | output_parser
+)
+
+sql_query = chain.invoke({"input": question})
 
 print(sql_query)
