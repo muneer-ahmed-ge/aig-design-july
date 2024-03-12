@@ -15,5 +15,5 @@ persist_directory = "/Users/muahmed/MT/ai/aig-design-july/resources/metadata_col
 db = Chroma(persist_directory=persist_directory, embedding_function=embeddings, collection_name="metadata_collection")
 
 query = "Who was the last technician for WO-00000450 ?"
-docs = db.similarity_search(query)
+docs = db.similarity_search(query=query, k=10)
 print(docs)
