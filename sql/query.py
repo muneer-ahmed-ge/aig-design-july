@@ -8,11 +8,11 @@ from langchain_community.vectorstores.chroma import Chroma
 from dotenv import load_dotenv
 
 question = "Who was the last technician for WO-00000450 ?"
-question = "Find out WO-00000450 total Work Order Lines of Line Type = 'Labor' ?"
-question = "What is the most common Line Type of Work Order Line"  # SELECT SVMXC__Line_Type__c, COUNT(*) as count FROM SVMXC__Service_Order_Line__c GROUP BY SVMXC__Line_Type__c ORDER BY count DESC LIMIT 1
 question = "What are the Line Types for WO-00000450 ?"
 question = "Who was the last technician for WO-00000450 ?"
 question = "How many work order exists ?"
+question = "What is the most common Line Type of Work Order Line"
+question = "Find out WO-00000450 total Work Order Lines of Line Type = 'Labor' ?"
 
 load_dotenv()
 embeddings = AzureOpenAIEmbeddings(
