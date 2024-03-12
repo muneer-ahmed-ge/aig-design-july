@@ -3,9 +3,9 @@
 from langchain.agents import AgentExecutor
 from langchain.agents.openai_assistant import OpenAIAssistantRunnable
 
-from app.knowledge_tool import knowledge_tool
-from app.schedule_tool import schedule_management_tool
-from app.service_history_tool import service_history_tool
+from knowledge_tool import knowledge_tool
+from schedule_tool import schedule_management_tool
+from service_history_tool import service_history_tool
 
 tools = [service_history_tool, schedule_management_tool, knowledge_tool]
 

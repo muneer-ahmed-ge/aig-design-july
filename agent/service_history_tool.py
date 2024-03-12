@@ -9,7 +9,7 @@ llm = AzureChatOpenAI(azure_endpoint="https://smax-ai-dev-apim-us.azure-api.net"
                       api_key="66681daf47e14be3a1c3966d62d17b5a",
                       deployment_name="SMAX-AI-Dev-GPT4-32", openai_api_version="2023-07-01-preview")
 
-db = SQLDatabase.from_uri("sqlite:///ai.db")
+db = SQLDatabase.from_uri("sqlite:////Users/muahmed/MT/ai/aig-design-july/resources/sample.db")
 toolkit = SQLDatabaseToolkit(db=db, llm=llm)
 
 # Get the prompt to use - you can modify this!

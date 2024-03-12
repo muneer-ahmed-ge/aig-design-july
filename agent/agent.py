@@ -2,9 +2,9 @@ from langchain import hub
 from langchain.agents import AgentExecutor, create_react_agent
 from langchain_community.chat_models import AzureChatOpenAI
 
-from app.knowledge_tool import knowledge_tool
-from app.schedule_tool import schedule_management_tool
-from app.service_history_tool import service_history_tool
+from knowledge_tool import knowledge_tool
+from schedule_tool import schedule_management_tool
+from service_history_tool import service_history_tool
 
 llm = AzureChatOpenAI(azure_endpoint="https://smax-ai-dev-apim-us.azure-api.net",
                       api_key="66681daf47e14be3a1c3966d62d17b5a",
