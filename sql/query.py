@@ -8,10 +8,10 @@ from langchain_community.vectorstores.chroma import Chroma
 from dotenv import load_dotenv
 
 question = "Who was the last technician for WO-00000450 ?"
-question = "What are the Line Types for WO-00000450 ?"
-question = "Who was the last technician for WO-00000450 ?"
-question = "How many work order exists ?"
 question = "What is the most common Line Type of Work Order Line"
+question = "Who was the last technician for WO-00000450 ?"
+question = "What are the Line Types for WO-00000450 ?"
+question = "How many work order exists ?"
 question = "Find out WO-00000450 total Work Order Lines of Line Type = 'Labor' ?"
 
 load_dotenv()
@@ -131,6 +131,6 @@ llm = AzureChatOpenAI(deployment_name="SMAX-AI-Dev-GPT4-32")
 
 chain = create_sql_query_chain(llm, db, prompt=PROMPT)
 
-response = chain.invoke({"question": question})
+sql_query = chain.invoke({"question": question})
 
-print(response)
+print(sql_query)
