@@ -11,9 +11,9 @@ from langchain_core.runnables import RunnablePassthrough
 question = "What is the most common Line Type of Work Order Line"
 question = "Who was the last technician for WO-00000450 ?"
 question = "What are the Line Types for WO-00000450 ?"
-question = "How many work order exists ?"
 question = "Find out WO-00000450 total Work Order Lines of Line Type = 'Labor' ?"
 question = "Who was the last technician for WO-00000450 ?"
+question = "How many work order exists ?"
 
 load_dotenv()
 embeddings = AzureOpenAIEmbeddings(
