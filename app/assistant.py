@@ -1,3 +1,5 @@
+# https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/assistant?source=recommendations
+
 from langchain.agents import AgentExecutor
 from langchain.agents.openai_assistant import OpenAIAssistantRunnable
 
