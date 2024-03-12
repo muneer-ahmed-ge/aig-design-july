@@ -1,4 +1,6 @@
 import os
+import sqlite3
+
 from langchain_community.chat_models import AzureChatOpenAI
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import PromptTemplate
@@ -7,13 +9,14 @@ from langchain_community.vectorstores.chroma import Chroma
 from dotenv import load_dotenv
 from langchain_core.runnables import RunnablePassthrough
 
-
-question = "What is the most common Line Type of Work Order Line"
 question = "Who was the last technician for WO-00000450 ?"
 question = "What are the Line Types for WO-00000450 ?"
 question = "Find out WO-00000450 total Work Order Lines of Line Type = 'Labor' ?"
 question = "Who was the last technician for WO-00000450 ?"
 question = "How many work order exists ?"
+question = "Have there been any machiine failures recently"
+
+
 
 load_dotenv()
 embeddings = AzureOpenAIEmbeddings(
@@ -119,9 +122,9 @@ DO NOT make any DML statements (INSERT, UPDATE, DELETE, DROP etc.) to the databa
 
 If the question does not seem related to the database, just return "I don't know" as the answer.
 
-{input}
+Return the result as a SQL Query only with no other text.
 
-Return the result as a SQL Query
+{input}
 """ % (service_order, service_order_line, group_members, installed_product)
 
 prompt = PromptTemplate(
@@ -142,3 +145,11 @@ chain = (
 sql_query = chain.invoke({"input": question})
 
 print(sql_query)
+
+connection = sqlite3.connect("/Users/muahmed/MT/ai/aig-design-july/resources/sample.db")
+cursor = connection.cursor()
+print("Connected to the database")
+cursor.execute(sql_query)
+ans = cursor.fetchall()
+connection.close()
+print(ans)
