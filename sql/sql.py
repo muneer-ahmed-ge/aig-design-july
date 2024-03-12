@@ -1,9 +1,21 @@
-from langchain.chains import create_sql_query_chain
+# https://python.langchain.com/docs/integrations/toolkits/sql_database
+# Good Article
+# https://medium.com/@lucnguyen_61589/revolutionize-your-data-exploration-unveiling-the-power-of-langchain-bd9f18d97532
+
+from langchain.agents import create_sql_agent
+from langchain.agents.agent_toolkits import SQLDatabaseToolkit
+from langchain.agents.agent_types import AgentType
 from langchain.sql_database import SQLDatabase
 from langchain_community.chat_models import AzureChatOpenAI
-from langchain_core.prompts import PromptTemplate
 
-_PROMPT_TEMPLATE = """
+db = SQLDatabase.from_uri("sqlite:////Users/muahmed/MT/ai/aig-design-july/resources/sample.db")
+
+chat = AzureChatOpenAI(deployment_name="SMAX-AI-Dev-GPT4-32")
+
+toolkit = SQLDatabaseToolkit(db=db, llm=chat)
+
+# Define prompt
+prefix = """
 You are an agent designed to interact with a SQLLite database.
 
 You must follow these instructions strictly :
@@ -53,26 +65,20 @@ try again.
 DO NOT make any DML statements (INSERT, UPDATE, DELETE, DROP etc.) to the database.
 
 If the question does not seem related to the database, just return "I don't know" as the answer.
-
-{input}
 """
 
-db = SQLDatabase.from_uri("sqlite:////Users/muahmed/MT/ai/aig-design-july/resources/sample.db")
-
-PROMPT = PromptTemplate(
-    input_variables=[], template=_PROMPT_TEMPLATE
+agent_executor = create_sql_agent(
+    llm=chat,
+    toolkit=toolkit,
+    verbose=True,
+    agent_type=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
+    prefix=prefix
 )
 
-llm = AzureChatOpenAI(deployment_name="SMAX-AI-Dev-GPT4-32")
-
-chain = create_sql_query_chain(llm, db, prompt=PROMPT)
-
-question = "Who was the last technician for WO-00000450 ?"
 question = "Find out WO-00000450 total Work Order Lines of Line Type = 'Labor' ?"
-question = "How many work order exists ?"  # SELECT COUNT(*) FROM SVMXC__Service_Order__c
 question = "What are the Line Types for WO-00000450 ?"
-question = "What is the most common Line Type of Work Order Line"  # SELECT SVMXC__Line_Type__c, COUNT(*) as count FROM SVMXC__Service_Order_Line__c GROUP BY SVMXC__Line_Type__c ORDER BY count DESC LIMIT 1
+question = "Who was the last technician for WO-00000450 ?"
+question = "What is the most common Line Type of Work Order Line"
+question = "How many work order exists ?"
 
-response = chain.invoke({"question": question})
-
-print(response)
+agent_executor.invoke({'input': question})
