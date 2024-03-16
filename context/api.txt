@@ -1,0 +1,10 @@
+POST /v1/chat/greetings
+{
+  "user_language": "en_US",
+  "entity": "a1yDM00000367ZuYAI",
+  "entity_resource": "SVMXC__Service_Order__c"
+}
+
+{
+
+}
