@@ -11,22 +11,27 @@ llm = AzureChatOpenAI(azure_endpoint="https://smax-ai-dev-apim-us.azure-api.net"
 @tool
 def service_history(question) -> str:
     """API for Service History pass the entire user input"""
-    print("**TOOL** Service History Skills, Question = " + question)
+    print("**tool service_history** Service History Skills, Input Question = " + question)
     return ""
 
 
 @tool
 def scheduling(question) -> str:
     """API for Schedule Management pass the entire user input"""
-    print("**TOOL** Scheduling Skills, Question = " + question)
+    print("**tool scheduling ** Scheduling Skills, Input Question = " + question)
     return ""
-
 
 @tool
-def knowledge(question) -> str:
-    """API for Benefits Documentation pass the entire user input"""
-    print("**TOOL** Knowledge Skills, Question = " + question)
-    return ""
+def get_product_code(product_name: str) -> str:
+    """API for fetching the product code give the product name"""
+    print("**tool get_product_code**, Input Product Code = " + product_name)
+    return "PR-007"
+
+@tool
+def knowledge(product_code: str) -> str:
+    """API for Product Documentation provided Product Code, first fetch the product code and then come here"""
+    print("**TOOL** knowledge, Input Product Code = " + product_code)
+    return "Remove the jammed papers and restart the machine"
 
 
 tools = [service_history, scheduling, knowledge]
@@ -39,6 +44,8 @@ agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
 question = "Can you schedule next preventative work order maintenance of this Asset"
 question = "Can you schedule work order WO-00000450 to the tech that has mostly worked on the Asset "
+question = "How to fix this asset Xerox Printer"
+
 
 answer = agent_executor.invoke(
     {
