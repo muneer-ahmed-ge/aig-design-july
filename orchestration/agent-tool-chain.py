@@ -1,3 +1,5 @@
+# https://www.comet.com/site/blog/using-the-react-framework-in-langchain
+
 from langchain import hub
 from langchain_core.tools import tool
 from langchain.agents import AgentExecutor, create_react_agent
