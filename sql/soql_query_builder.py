@@ -11,11 +11,11 @@ from langchain_core.runnables import RunnablePassthrough
 
 
 question = "Who was the last technician for WO-00000450 ?"
-question = "The last field tech working on the machine was who?"
 question = "How many work order exists ?"
 question = "Who was the last technician for WO-00000450 ?"
 question = "What are the Line Types for WO-00000450 ?"
 question = "Find out WO-00000450 total Work Order Lines of Line Type = 'Labor' ?"
+question = "The last field tech working on the machine WO-00000450 was who?"
 
 load_dotenv()
 embeddings = AzureOpenAIEmbeddings(
@@ -28,7 +28,7 @@ embeddings = AzureOpenAIEmbeddings(
 persist_directory = "/Users/muahmed/MT/ai/aig-design-july/resources/metadata_collection"
 db = Chroma(persist_directory=persist_directory, embedding_function=embeddings, collection_name="metadata_collection")
 
-docs = db.similarity_search(query=question, k=5)
+docs = db.similarity_search(query=question, k=10)
 
 dict = {'SVMXC__Service_Order__c': [], 'SVMXC__Service_Order_Line__c':[],
         'SVMXC__Service_Group_Members__c':[], 'SVMXC__Installed_Product__c' : []}
