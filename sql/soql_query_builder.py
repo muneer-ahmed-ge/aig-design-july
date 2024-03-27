@@ -13,9 +13,9 @@ from langchain_core.runnables import RunnablePassthrough
 question = "Who was the last technician for WO-00000450 ?"
 question = "The last field tech working on the machine was who?"
 question = "How many work order exists ?"
-question = "Find out WO-00000450 total Work Order Lines of Line Type = 'Labor' ?"
 question = "Who was the last technician for WO-00000450 ?"
 question = "What are the Line Types for WO-00000450 ?"
+question = "Find out WO-00000450 total Work Order Lines of Line Type = 'Labor' ?"
 
 load_dotenv()
 embeddings = AzureOpenAIEmbeddings(
@@ -42,26 +42,27 @@ for d in docs:
     idx2 = e.find("Metadata:")
     field = e[idx1 + len("FieldName: "): idx2]
     field = field.replace("\n", "")
-    dict.get(object).append(field)
+    meta = e[idx2 + len("Metadata: "): len(e)]
+    dict.get(object).append(field+',,'+meta+',String,,,')
 
 service_order = ""
 for e in dict.get("SVMXC__Service_Order__c"):
-    service_order += "\"" + e + "\" VARCHAR, \n"
+    service_order += e + "\n"
 print(f"SVMXC__Service_Order__c semantic fields = {service_order}")
 
 service_order_line = ""
 for e in dict.get("SVMXC__Service_Order_Line__c"):
-    service_order_line += "\"" + e + "\" VARCHAR, \n"
+    service_order_line += e + "\n"
 print(f"SVMXC__Service_Order_Line__c semantic fields = {service_order_line}")
 
 group_members = ""
 for e in dict.get("SVMXC__Service_Group_Members__c"):
-    group_members += "\"" + e + "\" VARCHAR, \n"
+    group_members += e + "\n"
 print(f"SVMXC__Service_Group_Members__c semantic fields = {group_members}")
 
 installed_product = ""
 for e in dict.get("SVMXC__Installed_Product__c"):
-    installed_product += "\"" + e + "\" VARCHAR, \n"
+    installed_product += e + "\n"
 print(f"SVMXC__Installed_Product__c semantic fields = {installed_product}")
 
 def execute_query(query: str) -> dict:
