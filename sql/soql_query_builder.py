@@ -47,22 +47,22 @@ for d in docs:
 service_order = ""
 for e in dict.get("SVMXC__Service_Order__c"):
     service_order += "\"" + e + "\" VARCHAR, \n"
-# print(service_order)
+print(f"SVMXC__Service_Order__c semantic fields = {service_order}")
 
 service_order_line = ""
 for e in dict.get("SVMXC__Service_Order_Line__c"):
     service_order_line += "\"" + e + "\" VARCHAR, \n"
-# print(service_order_line)
+print(f"SVMXC__Service_Order_Line__c semantic fields = {service_order_line}")
 
 group_members = ""
 for e in dict.get("SVMXC__Service_Group_Members__c"):
     group_members += "\"" + e + "\" VARCHAR, \n"
-# print(group_members)
+print(f"SVMXC__Service_Group_Members__c semantic fields = {group_members}")
 
 installed_product = ""
 for e in dict.get("SVMXC__Installed_Product__c"):
     installed_product += "\"" + e + "\" VARCHAR, \n"
-# print(installed_product)
+print(f"SVMXC__Installed_Product__c semantic fields = {installed_product}")
 
 def execute_query(query: str) -> dict:
     headers = {
@@ -79,29 +79,40 @@ You are an agent designed to generate SOQL(Salesforce Object Query Language) que
 Here are the list of objects SVMXC__Service_Order__c, SVMXC__Service_Order_Line__c, SVMXC__Service_Group_Members__c
 
 The schema of SVMXC__Service_Order__c is described in CVS format.
-Name,Label,Description,Type
-Id,Record ID,,String,Reference,RelationshipName
+Name,Label,Description,Type,Reference,RelationshipName
+Id,Record ID,,String,,
 Name,Work Order Number,,String,,
 SVMXC__Group_Member__c,Technician,Name of the group member working on the service order. This does not imply that this member has the ownership of service order record,SVMXC__Service_Group_Members__c,SVMXC__Group_Member__r
+SVMXC__Component__c,Component,,Serial number of the component for which the customer is seeking support. Is a lookup to an existing installed product record in ServiceMax,SVMXC__Installed_Product__c,SVMXC__Component__r
+SVMXC__Top_Level__c,Component,,Serial number of the component for which the customer is seeking support. Is a lookup to an existing installed product record in ServiceMax,SVMXC__Installed_Product__c,SVMXC__Component__r
+%s
 
 The schema of SVMXC__Service_Order_Line__c is described in CVS format.
 Name,Label,Description,Type
 Id,Record ID,,String,Reference,RelationshipName
 Name,Line Number,,String,,
 SVMXC__Service_Order__c,Work Order,Service order number. Is a lookup to an existing service order in ServiceMax,SVMXC__Service_Order__c,SVMXC__Service_Order__r
+%s
 
 The schema of SVMXC__Service_Group_Members__c is described in CVS format.
 Name,Label,Description,Type
 Id,Record ID,,String,Reference,RelationshipName
 Name,Member Name,,String,,
+%s
+
+The schema of SVMXC__Installed_Product__c is described in CVS format.
+Name,Label,Description,Type
+Id,Record ID,,String,Reference,RelationshipName
+Name,Installed Product ID,,String,,
+%s
 
 Always use the RelationshipName to query related objects.
 
 Return the result as a SOQL Query only with no other text.
 
 {input}
-"""
-# % (service_order, service_order_line, group_members, installed_product)
+""" % (service_order, service_order_line, group_members, installed_product)
+print(f"Prompt with semantic fields = {_PROMPT_TEMPLATE}")
 
 prompt = PromptTemplate(
     input_variables=[], template=_PROMPT_TEMPLATE
