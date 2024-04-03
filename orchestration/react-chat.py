@@ -21,14 +21,14 @@ def query_record_by_name(record_name: str) -> str:
 def service_history(history_question: str) -> str:
     """API for Service History pass the entire user input"""
     print("**tool service_history** Service History Skills, Input Question = " + history_question)
-    return ""
+    return "Tom"
 
 
 @tool
 def scheduling(scheduling_question: str) -> str:
     """API for Schedule Management pass the entire user input"""
     print("**tool scheduling ** Scheduling Skills, Input Question = " + scheduling_question)
-    return ""
+    return "Done"
 
 
 @tool
