@@ -87,8 +87,7 @@ Return the result as a SOQL Query only with no other text.
 
 def execute_query(query: str) -> dict:
     headers = {
-        'Authorization': 'Bearer 00D0v0000009Vlf!AR4AQNgWpjBh18.I1DrOaKG.BB539Obuiz'
-                         '.mcLO1M7TbuFHh9zhq6T24NWzAWMGo0E7p49zXfjvMhsgvVPA5XyzAlWb7lZwY'
+        'Authorization': 'Bearer 00D0v0000009Vlf!AR4AQCPtbbi8NYPtiFg5jOI.N_WwaxUfZj1czPFs7GfSB9535JrT1O27xYgxWfq6KaK3Z6BRt4Ax_pdvmpwreW61X5TirLr9'
     }
     response = httpx.get("https://d0v0000009vlfeae--part2.sandbox.my.salesforce.com/services/data/v55.0/query/?q="
                          + query, headers=headers)
@@ -111,7 +110,7 @@ chain = (
     | output_parser
 )
 
-question = "Summarize all the work orders in the last five years."
+question = "How many work orders"
 
 sql_query = chain.invoke({"input": question})
 print("generated soql_query = " + sql_query)
