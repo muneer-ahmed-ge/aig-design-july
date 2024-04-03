@@ -7,7 +7,7 @@ from langchain_community.chat_models import AzureChatOpenAI
 
 llm = AzureChatOpenAI(azure_endpoint="https://smax-ai-dev-apim-us.azure-api.net",
                       api_key="66681daf47e14be3a1c3966d62d17b5a",
-                      deployment_name="SMAX-AI-Dev-GPT4-32", openai_api_version="2023-07-01-preview")
+                      deployment_name="SMAX-AI-Dev-GPT4", openai_api_version="2023-07-01-preview")
 
 
 @tool
@@ -55,7 +55,7 @@ context = "WO-00000450"
 question = "How to fix this asset Xerox Printer"
 question = "Can you schedule next preventative work order maintenance of this Asset"
 question = "Can you tell me who has mostly worked on the Asset Xerox Printer"
-question = "Can you schedule work order WO-00000450 to the tech that has mostly worked on the Asset Xerox Printer"
+question = "Can you schedule work order WO-00000450 to the tech that has mostly worked on the WO-00000825"
 
 answer = agent_executor.invoke({"input": question,"chat_history": ""},{"metadata": {"agent-type": "react-chat"}})
 
