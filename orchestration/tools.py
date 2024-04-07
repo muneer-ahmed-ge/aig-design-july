@@ -22,14 +22,14 @@ def scheduling(scheduling_question: str) -> str:
 
 
 @tool
-def get_product_code(product_name: str) -> str:
-    """API for fetching the product code give the product name"""
-    print("**tool get_product_code**, Input Product Code = " + product_name)
+def get_product_id(product_name: str) -> str:
+    """API for fetching the product id give the product name"""
+    print("**tool get_product_id**, Input Product Name = " + product_name)
     return "PR-007"
 
 
 @tool
-def knowledge(product_code: str) -> str:
-    """API for Product Documentation provided Product Code, first fetch the product code and then come here"""
-    print("**TOOL** knowledge, Input Product Code = " + product_code)
+def knowledge(product_id: str) -> str:
+    """API for Product Documentation provided Product id, first fetch the product id and then come here"""
+    print("**TOOL** knowledge, Input Product Id = " + product_id)
     return "Remove the jammed papers and restart the machine"
