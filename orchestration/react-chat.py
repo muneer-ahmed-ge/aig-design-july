@@ -8,7 +8,7 @@ from langchain_community.chat_models import AzureChatOpenAI
 
 llm = AzureChatOpenAI(azure_endpoint="https://smax-ai-dev-eastus.openai.azure.com",
                       api_key="5c5e5b0ebd354cf4a8e52af1f2748d66",
-                      deployment_name="SMAX-AI-Dev-GPT4-0125")
+                      deployment_name="SMAX-AI-Dev-GPT4-0125", openai_api_version="2024-02-15-preview")
 
 
 @tool
