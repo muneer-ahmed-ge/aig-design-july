@@ -1,4 +1,16 @@
-# https://python.langchain.com/docs/modules/agents/agent_types/openai_tools/
+# Business: Conversational Agents to answer complex questions by calling external APIs
+# Problem : Convert natural language into API calls
+# Solution : OpenAI Function-Calling
+# https://platform.openai.com/docs/guides/function-calling
+# https://www.promptingguide.ai/applications/function_calling
+# https://www.promptingguide.ai/techniques
+# https://python.langchain.com/docs/modules/agents/agent_types/openai_tools
+
+# Notes
+# OpenAI termed the capability to invoke a single function as functions, and the capability to invoke one or more functions as tools.
+# If you’re creating agents using OpenAI models, you should be using this OpenAI Tools agent rather than the OpenAI functions agent.
+# Using tools allows the model to request that more than one function will be called upon when appropriate.
+# In some situations, this can help significantly reduce the time that it takes an agent to achieve its goal.
 
 import os
 

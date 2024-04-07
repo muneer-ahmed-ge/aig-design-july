@@ -1,0 +1,116 @@
+{
+  "method": "post",
+  "url": "/chat/completions",
+  "files": "None",
+  "json_data": {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a helpful assistant"
+      },
+      {
+        "role": "user",
+        "content": "How to fix this asset Xerox Printer"
+      }
+    ],
+    "model": "gpt-3.5-turbo",
+    "n": 1,
+    "stream": false,
+    "temperature": 0.7,
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "service_history",
+          "description": "service_history(history_question: str) -> str - API for Service History pass the entire user input",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "history_question": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "history_question"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "scheduling",
+          "description": "scheduling(scheduling_question: str) -> str - API for Schedule Management pass the entire user input",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "scheduling_question": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "scheduling_question"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "knowledge",
+          "description": "knowledge(product_id: str) -> str - API for Product Documentation provided Product id, first fetch the product id and then come here",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "product_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "product_id"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "get_product_id",
+          "description": "get_product_id(product_name: str) -> str - API for fetching the product id give the product name",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "product_name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "product_name"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "query_record_by_name",
+          "description": "query_record_by_name(record_name: str) -> str - API for fetching the record given record name",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "record_name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "record_name"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "headers": {
+    "api-key": "5c5e5b0ebd354cf4a8e52af1f2748d66"
+  }
+}

@@ -1,5 +1,11 @@
-# https://www.comet.com/site/blog/using-the-react-framework-in-langchain
+# Business: Conversational Agents to answer complex questions by calling external APIs
+# Problem : Convert natural language into API calls
+# Solution : reAct
+# https://www.promptingguide.ai/techniques/react
+# https://python.langchain.com/docs/modules/agents/agent_types/react/
+# https://www.comet.com/site/blog/using-the-react-framework-in-langchain/
 # https://medium.com/@jainashish.079/build-llm-agent-combining-reasoning-and-action-react-framework-using-langchain-379a89a7e881
+
 import os
 
 from dotenv import load_dotenv
