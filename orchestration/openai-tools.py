@@ -1,49 +1,19 @@
 # https://python.langchain.com/docs/modules/agents/agent_types/openai_tools/
 
+import os
+
+from dotenv import load_dotenv
 from langchain import hub
-from langchain_core.tools import tool
-from langchain.agents import AgentExecutor, create_react_agent, create_openai_tools_agent
+from langchain.agents import AgentExecutor, create_openai_tools_agent
 from langchain_community.chat_models import AzureChatOpenAI
 
+from orchestration.tools import service_history, scheduling, knowledge, get_product_code, query_record_by_name
+
+load_dotenv()
+
 llm = AzureChatOpenAI(azure_endpoint="https://smax-ai-dev-eastus.openai.azure.com",
-                      api_key="5c5e5b0ebd354cf4a8e52af1f2748d66",
+                      api_key=os.getenv("AZURE_OPENAI_0125_API_KEY"),
                       deployment_name="SMAX-AI-Dev-GPT4-0125", openai_api_version="2024-02-15-preview")
-
-
-@tool
-def query_record_by_name(record_name: str) -> str:
-    """API for fetching the record given record name"""
-    print("**tool query_record_by_name**, Input Record Name = " + record_name)
-    return "{'tech' : 'tom'}"
-
-
-@tool
-def service_history(history_question: str) -> str:
-    """API for Service History pass the entire user input"""
-    print("**tool service_history** Service History Skills, Input Question = " + history_question)
-    return "Tom"
-
-
-@tool
-def scheduling(scheduling_question: str) -> str:
-    """API for Schedule Management pass the entire user input"""
-    print("**tool scheduling ** Scheduling Skills, Input Question = " + scheduling_question)
-    return "Done"
-
-
-@tool
-def get_product_code(product_name: str) -> str:
-    """API for fetching the product code give the product name"""
-    print("**tool get_product_code**, Input Product Code = " + product_name)
-    return "PR-007"
-
-
-@tool
-def knowledge(product_code: str) -> str:
-    """API for Product Documentation provided Product Code, first fetch the product code and then come here"""
-    print("**TOOL** knowledge, Input Product Code = " + product_code)
-    return "Remove the jammed papers and restart the machine"
-
 
 tools = [service_history, scheduling, knowledge, get_product_code, query_record_by_name]
 
