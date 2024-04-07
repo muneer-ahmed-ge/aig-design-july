@@ -1,13 +1,13 @@
-# https://www.comet.com/site/blog/using-the-react-framework-in-langchain
+# https://python.langchain.com/docs/modules/agents/agent_types/openai_tools/
 
 from langchain import hub
 from langchain_core.tools import tool
 from langchain.agents import AgentExecutor, create_react_agent, create_openai_tools_agent
 from langchain_community.chat_models import AzureChatOpenAI
 
-llm = AzureChatOpenAI(azure_endpoint="https://smax-ai-dev-apim-us.azure-api.net",
-                      api_key="66681daf47e14be3a1c3966d62d17b5a",
-                      deployment_name="SMAX-AI-Dev-GPT4", openai_api_version="2023-07-01-preview")
+llm = AzureChatOpenAI(azure_endpoint="https://smax-ai-dev-eastus.openai.azure.com",
+                      api_key="5c5e5b0ebd354cf4a8e52af1f2748d66",
+                      deployment_name="SMAX-AI-Dev-GPT4-0125")
 
 
 @tool
