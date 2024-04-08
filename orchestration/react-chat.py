@@ -21,9 +21,9 @@ llm = AzureChatOpenAI(azure_endpoint="https://smax-ai-dev-eastus.openai.azure.co
                       deployment_name="SMAX-AI-Dev-GPT4-0125", openai_api_version="2024-02-15-preview")
 
 tools = [service_history, scheduling, knowledge, get_product_id, query_record_by_name]
-
 prompt = hub.pull("hwchase17/react-chat")
 agent = create_react_agent(llm, tools, prompt)
+print(prompt.template)
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
 context = "WO-00000450"

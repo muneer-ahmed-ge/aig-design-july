@@ -22,16 +22,27 @@ from langchain_community.chat_models import AzureChatOpenAI
 from orchestration.tools import service_history, scheduling, knowledge, get_product_id, query_record_by_name
 
 load_dotenv()
-
 llm = AzureChatOpenAI(azure_endpoint="https://smax-ai-dev-eastus.openai.azure.com",
                       api_key=os.getenv("AZURE_OPENAI_0125_API_KEY"),
                       deployment_name="SMAX-AI-Dev-GPT4-0125", openai_api_version="2024-02-15-preview")
 
+PROMPT_PREFIX = (
+    "You are an AI system designed to select tools to answer from user's question. You task is:\n"
+    "- to answer questions about the service history of an Installed Product (a machine or piece of equipment)."
+    " The service history records consist of Work Orders, Work Details, Installed Products, and assigned technicians etc,"
+    " which can help a field technician for trouble-shooting based on the past records related to an asset. A Work Order or a Job is created on issues related to an Installed Product."
+    "A technician named {user_name} is chatting with you. This technician was initially querying information about {context_entity_label} of ID {context_entity}")
+prefix = (PROMPT_PREFIX.format(
+    user_name="Tom",
+    context_entity_label="Work Order",
+    context_entity="WO-0000450"))
+prompt = hub.pull("hwchase17/openai-tools-agent")
+system_prompt = prompt.messages[0]
+system_prompt.prompt.template = prefix + "\n\n" + system_prompt.prompt.template
+
 tools = [service_history, scheduling, knowledge, get_product_id, query_record_by_name]
 
-prompt = hub.pull("hwchase17/openai-tools-agent")
 agent = create_openai_tools_agent(tools=tools, llm=llm, prompt=prompt)
-
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
 context = "WO-00000450"
