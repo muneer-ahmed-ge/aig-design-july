@@ -5,6 +5,7 @@
 # https://www.promptingguide.ai/applications/function_calling
 # https://www.promptingguide.ai/techniques
 # https://python.langchain.com/docs/modules/agents/agent_types/openai_tools
+# https://www.promptingguide.ai/research/llm-agents
 
 # Notes
 # OpenAI termed the capability to invoke a single function as functions, and the capability to invoke one or more functions as tools.
@@ -21,6 +22,7 @@ from dotenv import load_dotenv
 from langchain import hub
 from langchain.agents import AgentExecutor, create_openai_tools_agent
 from langchain_community.chat_models import AzureChatOpenAI
+from langchain_core.messages import HumanMessage, AIMessage
 
 from orchestration.tools import service_history, scheduling, knowledge, get_product_id, query_record_by_name
 
@@ -56,7 +58,13 @@ question = "Can you tell me who has mostly worked on the Asset Xerox Printer"
 question = "Can you schedule work order WO-00000450 to the tech that has mostly worked on the Asset Xerox Printer"
 question = "How to fix this asset Xerox Printer"
 
-answer = agent_executor.invoke({"input": question},{"metadata": {"agent-type": "openai-tools-agent"}})
-
-print("Question : " + answer['input'])
-print("Answer   : " + answer['output'])
+chat_history = []
+user_input = question
+while user_input != 'exit':
+    user_input = input('Question > ')
+    if user_input != 'exit':
+        response = agent_executor.invoke({"input": user_input, "chat_history" : chat_history})
+        print("Question = " + response['input'])
+        print("Answer = " + response['output'])
+        chat_history.append(HumanMessage(content=response['input']))
+        chat_history.append(AIMessage(content=response['output']))
