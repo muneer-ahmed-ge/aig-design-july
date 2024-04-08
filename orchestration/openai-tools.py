@@ -7,11 +7,11 @@
 # https://python.langchain.com/docs/modules/agents/agent_types/openai_tools
 # https://www.promptingguide.ai/research/llm-agents
 
-# Notes
-# OpenAI termed the capability to invoke a single function as functions, and the capability to invoke one or more functions as tools.
-# If you’re creating agents using OpenAI models, you should be using this OpenAI Tools agent rather than the OpenAI functions agent.
-# Using tools allows the model to request that more than one function will be called upon when appropriate.
-# In some situations, this can help significantly reduce the time that it takes an agent to achieve its goal.
+# Notes OpenAI termed the capability to invoke a single function as functions, and the capability to invoke one or
+# more functions as tools. If you’re creating agents using OpenAI models, you should be using this OpenAI Tools agent
+# rather than the OpenAI functions agent. Using tools allows the model to request that more than one function will be
+# called upon when appropriate. In some situations, this can help significantly reduce the time that it takes an
+# agent to achieve its goal.
 
 # OpenAI Functions vs reAct
 # https://www.reddit.com/r/LangChain/comments/178lhnc/openai_functions_vs_langchain_react_agents/
@@ -34,10 +34,11 @@ llm = AzureChatOpenAI(azure_endpoint="https://smax-ai-dev-eastus.openai.azure.co
 PROMPT_PREFIX = (
     "You are an AI system designed to select tools to answer from user's question. You task is:\n"
     "- to answer questions about the service history of an Installed Product (a machine or piece of equipment)."
-    "The service history records consist of Work Orders, Work Details, Installed Products, and assigned technicians etc,"
-    " which can help a field technician for trouble-shooting based on the past records related to an asset. "
+    "The service history records consist of Work Orders, Work Details, Installed Products, and assigned technicians "
+    "etc, which can help a field technician for trouble-shooting based on the past records related to an asset. "
     "A Work Order or a Job is created on issues related to an Installed Product."
-    "A technician named {user_name} is chatting with you. This technician was initially querying information about {context_entity_label} of ID {context_entity}"
+    "A technician named {user_name} is chatting with you. This technician was initially querying information about {"
+    "context_entity_label} of ID {context_entity}"
     "Let's think step by step.")
 prefix = (PROMPT_PREFIX.format(
     user_name="Tom",
