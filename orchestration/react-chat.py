@@ -5,6 +5,7 @@
 # https://python.langchain.com/docs/modules/agents/agent_types/react/
 # https://www.comet.com/site/blog/using-the-react-framework-in-langchain/
 # https://medium.com/@jainashish.079/build-llm-agent-combining-reasoning-and-action-react-framework-using-langchain-379a89a7e881
+# https://www.youtube.com/watch?v=Eug2clsLtFs
 
 # OpenAI Functions vs reAct
 # https://www.reddit.com/r/LangChain/comments/178lhnc/openai_functions_vs_langchain_react_agents/
