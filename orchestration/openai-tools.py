@@ -58,6 +58,16 @@ question = "Can you schedule next preventative work order maintenance of this As
 question = "Can you tell me who has mostly worked on the Asset Xerox Printer"
 question = "Can you schedule work order WO-00000450 to the tech that has mostly worked on the Asset Xerox Printer"
 question = "How to fix this asset Xerox Printer"
+question = "What’s on my calendar today ?"
+
+# What’s on my calendar today ?
+# Appointment: [WO-00008627] Princess Margaret Hospital on April 10, 2024 2pm and Appointment: [WO-00000155] United Oil & Gas Corp on April 10, 2024 at 4pm
+#
+# When was was the last tech for first appointment and when is its next appointment and how to fix its red light flashing ?
+# Last Tech : John Doe
+# Next Appointment : April 12, 2024
+# Fix Red light : Restart the machine
+
 
 chat_history = []
 user_input = question
