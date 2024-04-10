@@ -27,14 +27,19 @@ llm = AzureChatOpenAI(azure_endpoint="https://smax-ai-dev-eastus.openai.azure.co
 tools = [service_history, scheduling, knowledge, get_product_id, query_record_by_name]
 prompt = hub.pull("hwchase17/react-chat")
 agent = create_react_agent(llm, tools, prompt)
-print(prompt.template)
+# print(prompt.template)
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
-context = "WO-00000450"
-question = "Can you schedule next preventative work order maintenance of this Asset"
-question = "Can you tell me who has mostly worked on the Asset Xerox Printer"
-question = "Can you schedule work order WO-00000450 to the tech that has mostly worked on the WO-00000825"
-question = "How to fix this asset Xerox Printer"
+# https://servicemax.atlassian.net/wiki/spaces/PROD/pages/3951984679/Copilot+Chat+Examples
+question = "What’s on my calendar today ?"
+
+# What’s on my calendar today ?
+# Appointment: [WO-00000155] Princess Margaret Hospital on April 10, 2024 2pm and Appointment: [WO-00008627] United Oil & Gas Corp on April 10, 2024 at 4pm
+#
+# Who was was the last tech for first appointment and when is its next appointment and how to fix first appointment's red light flashing ?
+# Last Tech : John Doe
+# Next Appointment : April 12, 2024
+# Fix Red light : Restart the machine
 
 answer = agent_executor.invoke({"input": question,"chat_history": ""},{"metadata": {"agent-type": "react-chat"}})
 
