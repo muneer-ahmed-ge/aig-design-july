@@ -30,20 +30,20 @@ load_dotenv()
 llm = AzureChatOpenAI(azure_endpoint="https://smax-ai-dev-eastus.openai.azure.com",
                       api_key=os.getenv("AZURE_OPENAI_0125_API_KEY"),
                       deployment_name="SMAX-AI-Dev-GPT4-0125", openai_api_version="2024-02-15-preview")
+PROMPT_PREFIX = """
+    You are an AI system designed to manage Field Service Assets like equipments installed at a location.
+    Technicians interact with you enquiring about Asset Service History its schedule and will ask help for 
+    trouble-shooting issues with Assets.
+    You are provided with a set of tools to get Asset Service History and Scheduling and Help information.
+    Select appropriate tools based on your question's intent.
 
-PROMPT_PREFIX = (
-    "You are an AI system designed to select tools to answer from user's question. You task is:\n"
-    "- to answer questions about the service history of an Installed Product (a machine or piece of equipment)."
-    "The service history records consist of Work Orders, Work Details, Installed Products, and assigned technicians "
-    "etc, which can help a field technician for trouble-shooting based on the past records related to an asset. "
-    "A Work Order or a Job is created on issues related to an Installed Product."
-    "A technician named {user_name} is chatting with you. This technician was initially querying information about {"
-    "context_entity_label} of ID {context_entity}"
-    "Let's think step by step.")
-prefix = (PROMPT_PREFIX.format(
-    user_name="Tom",
-    context_entity_label="Work Order",
-    context_entity="WO-0000450"))
+    A technician named {user_name} is chatting with you now.
+
+    The Asset Service history records consist of Work Orders, Work Details, Installed Products, and assigned technicians 
+
+    Let's think step by step."
+"""
+prefix = (PROMPT_PREFIX.format(user_name="Tom"))
 prompt = hub.pull("hwchase17/openai-tools-agent")
 system_prompt = prompt.messages[0]
 system_prompt.prompt.template = prefix + "\n\n" + system_prompt.prompt.template
@@ -61,7 +61,7 @@ question = "How to fix this asset Xerox Printer"
 question = "What’s on my calendar today ?"
 
 # What’s on my calendar today ?
-# Appointment: [WO-00008627] Princess Margaret Hospital on April 10, 2024 2pm and Appointment: [WO-00000155] United Oil & Gas Corp on April 10, 2024 at 4pm
+# Appointment: [WO-00000155] Princess Margaret Hospital on April 10, 2024 2pm and Appointment: [WO-00008627] United Oil & Gas Corp on April 10, 2024 at 4pm
 #
 # Who was was the last tech for first appointment and when is its next appointment and how to fix first appointment's red light flashing ?
 # Last Tech : John Doe
