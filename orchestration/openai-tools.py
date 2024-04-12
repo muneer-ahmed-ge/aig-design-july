@@ -24,7 +24,8 @@ from langchain.agents import AgentExecutor, create_openai_tools_agent
 from langchain_community.chat_models import AzureChatOpenAI
 from langchain_core.messages import HumanMessage, AIMessage
 
-from orchestration.tools import service_history, scheduling, knowledge, get_product_id, query_record_by_name
+from orchestration.tools import service_history, scheduling, knowledge, get_product_id, \
+    get_installed_product_id_by_work_order_name
 
 load_dotenv()
 llm = AzureChatOpenAI(azure_endpoint="https://smax-ai-dev-eastus.openai.azure.com",
@@ -43,25 +44,28 @@ PROMPT_PREFIX = """
 
     Let's think step by step.   
 """
-#     Question: What’s on my calendar today ?
-#     Answer: Appointment: [WO-00000155] Princess Margaret Hospital on April 10, 2024 2pm and Appointment: [WO-00008627] United Oil & Gas Corp on April 10, 2024 at 4pm
-#     Question: Who was was the last tech for first appointment and when is its next appointment and how to fix first appointment's red light flashing ?
-#     Break the Question into multiple questions.
-#     Question: Who was the last technician for WO-00000155?
-#     Answer: John Doe
-#     Question: When is the next appointment for WO-00000155?
-#     Answer: April 12, 2024
-#     Question: Get Product Id for WO-00000155?
-#     Answer: PR-001
-#     Question: How to address the red light flashing for Product Id PR-001 ?
-#     Answer: Restart the Machine
+
+PROMPT_PREFIX_FEW_SHOTS = """
+Question: What’s on my calendar today ?
+Answer: Appointment: [WO-00000155] Princess Margaret Hospital on April 10, 2024 2pm and Appointment: [WO-00008627] United Oil & Gas Corp on April 10, 2024 at 4pm
+Question: Who was was the last tech for first appointment and when is its next appointment and how to fix first appointment's red light flashing ?
+Break the Question into multiple questions.
+Question: Who was the last technician for WO-00000155?
+Answer: John Doe
+Question: When is the next appointment for WO-00000155?
+Answer: April 12, 2024
+Question: Get Product Id for WO-00000155?
+Answer: PR-001
+Question: How to address the red light flashing for Product Id PR-001 ?
+Answer: Restart the Machine
+"""
 
 prefix = (PROMPT_PREFIX.format(user_name="Tom"))
 prompt = hub.pull("hwchase17/openai-tools-agent")
 system_prompt = prompt.messages[0]
 system_prompt.prompt.template = prefix + "\n\n" + system_prompt.prompt.template
 
-tools = [service_history, scheduling, knowledge, get_product_id, query_record_by_name]
+tools = [service_history, scheduling, knowledge, get_installed_product_id_by_work_order_name, get_product_id]
 
 agent = create_openai_tools_agent(tools=tools, llm=llm, prompt=prompt)
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
@@ -69,20 +73,31 @@ agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 # https://servicemax.atlassian.net/browse/AIG-617
 
 # https://servicemax.atlassian.net/wiki/spaces/PROD/pages/3951984679/Copilot+Chat+Examples
-question = "What’s on my calendar today ?"
+"""
+Simple Questions
+----------------
+Question : What is the scheduled end date of work order WO-12345 ?
+Answer: 
 
-# Conversation # 1
-    # What’s on my calendar today ?
-    #   Appointment: [WO-00000155] Princess Margaret Hospital on April 10, 2024 2pm and Appointment: [WO-00008627] United Oil & Gas Corp on April 10, 2024 at 4pm
-    # Who was was the last tech for first appointment and how to fix first appointment's red light flashing ?
-    #   Last Tech : John Doe
-    #   Next Appointment : April 12, 2024
-    #   Product Id : PR-0001
-    #   Fix Red light : Restart the machine
+Composite Questions
+-------------------
+Conversation # 1
+Question : What’s on my calendar today ?
+Answer : Appointment: [WO-00000155] Princess Margaret Hospital on April 10, 2024 2pm and Appointment: [WO-00008627] United Oil & Gas Corp on April 10, 2024 at 4pm
+Question : Who was was the last tech for first appointment and how to fix first appointment's red light flashing ?
+    Question : 
+    Answer : John Doe
+    Question : 
+    Answer : April 12, 2024
+    Question : 
+    Answer : Restart the machine 
+Answer :  Aggregated Answer
 
-# Conversation # 2
-    # Can you schedule work order WO-00000450 to the tech that has mostly worked on the Asset Xerox Printer ?
+Conversation # 2
+Question : Can you schedule work order WO-00000450 to the tech that has mostly worked on the Asset Xerox Printer ?
+"""
 
+question = "List all the work orders for installed product of work order WO-12345 ?"
 chat_history = []
 user_input = question
 while user_input != 'exit':
