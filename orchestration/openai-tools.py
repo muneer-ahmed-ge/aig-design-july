@@ -25,7 +25,7 @@ from langchain_community.chat_models import AzureChatOpenAI
 from langchain_core.messages import HumanMessage, AIMessage
 
 from orchestration.tools import service_history, scheduling, knowledge, get_product_id, \
-    get_installed_product_id_by_work_order_name
+    get_installed_product_by_work_order
 
 load_dotenv()
 llm = AzureChatOpenAI(azure_endpoint="https://smax-ai-dev-eastus.openai.azure.com",
@@ -65,7 +65,7 @@ prompt = hub.pull("hwchase17/openai-tools-agent")
 system_prompt = prompt.messages[0]
 system_prompt.prompt.template = prefix + "\n\n" + system_prompt.prompt.template
 
-tools = [service_history, scheduling, knowledge, get_installed_product_id_by_work_order_name, get_product_id]
+tools = [service_history, scheduling, knowledge, get_installed_product_by_work_order, get_product_id]
 
 agent = create_openai_tools_agent(tools=tools, llm=llm, prompt=prompt)
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
@@ -97,7 +97,8 @@ Conversation # 2
 Question : Can you schedule work order WO-00000450 to the tech that has mostly worked on the Asset Xerox Printer ?
 """
 
-question = "List all the work orders for installed product of work order WO-12345 ?"
+question = "List all the work order for asset of WO-12345 ?"
+# question = "What is the installed date of installed product A-1234 ?"
 chat_history = []
 user_input = question
 while user_input != 'exit':

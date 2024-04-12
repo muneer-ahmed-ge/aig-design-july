@@ -7,15 +7,19 @@ from langchain_core.tools import tool
 #     return input('Query Record Question > ' + record_name + ' :  ')
 
 @tool
-def get_installed_product_id_by_work_order_name(work_order_name: str) -> str:
-    """API for getting the installed product id for work order names eg: WO-00000450"""
-    return input('Service History Question > ' + work_order_name + ' :  ')
-
+def get_installed_product_by_work_order(work_order_name: str) -> str:
+    """API for getting the installed product for work order eg: WO-00000450"""
+    return input('Service History Question (get_installed_product_by_work_order) > ' + work_order_name + ' :  ')
 
 @tool
-def service_history(installed_product_id: str, history_question: str) -> str:
-    """API for Service History provided the installed_product_id"""
-    return input('Service History Question installed_product_id > ' + installed_product_id + ' > ' + history_question + ':  ')
+def get_work_order_by_installed_product(installed_product_name: str) -> str:
+    """API for getting the work order for installed product eg: A-12345"""
+    return input('Service History Question (get_work_order_by_installed_product) > ' + installed_product_name + ' :  ')
+
+@tool
+def service_history(installed_product: str, history_question: str) -> str:
+    """API for Service History provided the installed_product"""
+    return input('Service History Question (service_history) installed_product > ' + installed_product + ' > ' + history_question + ':  ')
 
 
 @tool
