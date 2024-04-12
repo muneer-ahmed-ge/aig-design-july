@@ -39,10 +39,23 @@ PROMPT_PREFIX = """
 
     A technician named {user_name} is chatting with you now.
 
-    The Asset Service history records consist of Work Orders, Work Details, Installed Products, and assigned technicians 
+    The Asset Service history records consist of Work Orders, Work Details, Installed Products, and assigned technicians
 
-    Let's think step by step."
+    Let's think step by step.   
 """
+#     Question: What’s on my calendar today ?
+#     Answer: Appointment: [WO-00000155] Princess Margaret Hospital on April 10, 2024 2pm and Appointment: [WO-00008627] United Oil & Gas Corp on April 10, 2024 at 4pm
+#     Question: Who was was the last tech for first appointment and when is its next appointment and how to fix first appointment's red light flashing ?
+#     Break the Question into multiple questions.
+#     Question: Who was the last technician for WO-00000155?
+#     Answer: John Doe
+#     Question: When is the next appointment for WO-00000155?
+#     Answer: April 12, 2024
+#     Question: Get Product Id for WO-00000155?
+#     Answer: PR-001
+#     Question: How to address the red light flashing for Product Id PR-001 ?
+#     Answer: Restart the Machine
+
 prefix = (PROMPT_PREFIX.format(user_name="Tom"))
 prompt = hub.pull("hwchase17/openai-tools-agent")
 system_prompt = prompt.messages[0]
@@ -53,16 +66,22 @@ tools = [service_history, scheduling, knowledge, get_product_id, query_record_by
 agent = create_openai_tools_agent(tools=tools, llm=llm, prompt=prompt)
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
+# https://servicemax.atlassian.net/browse/AIG-617
+
 # https://servicemax.atlassian.net/wiki/spaces/PROD/pages/3951984679/Copilot+Chat+Examples
 question = "What’s on my calendar today ?"
 
-# What’s on my calendar today ?
-# Appointment: [WO-00000155] Princess Margaret Hospital on April 10, 2024 2pm and Appointment: [WO-00008627] United Oil & Gas Corp on April 10, 2024 at 4pm
-#
-# Who was was the last tech for first appointment and when is its next appointment and how to fix first appointment's red light flashing ?
-# Last Tech : John Doe
-# Next Appointment : April 12, 2024
-# Fix Red light : Restart the machine
+# Conversation # 1
+    # What’s on my calendar today ?
+    #   Appointment: [WO-00000155] Princess Margaret Hospital on April 10, 2024 2pm and Appointment: [WO-00008627] United Oil & Gas Corp on April 10, 2024 at 4pm
+    # Who was was the last tech for first appointment and how to fix first appointment's red light flashing ?
+    #   Last Tech : John Doe
+    #   Next Appointment : April 12, 2024
+    #   Product Id : PR-0001
+    #   Fix Red light : Restart the machine
+
+# Conversation # 2
+    # Can you schedule work order WO-00000450 to the tech that has mostly worked on the Asset Xerox Printer ?
 
 chat_history = []
 user_input = question

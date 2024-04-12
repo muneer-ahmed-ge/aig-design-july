@@ -24,5 +24,5 @@ def get_product_id(product_name: str) -> str:
 
 @tool
 def knowledge(product_id: str) -> str:
-    """API for Product Documentation provided Product id, first fetch the product id and then come here"""
+    """API for Product Documentation provided Product id"""
     return input('Knowledge Skill Question > ' + product_id + ' :  ')
