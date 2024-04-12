@@ -17,9 +17,9 @@ def get_work_order_by_installed_product(installed_product_name: str) -> str:
     return input('Service History Question (get_work_order_by_installed_product) > ' + installed_product_name + ' :  ')
 
 @tool
-def service_history(installed_product: str, history_question: str) -> str:
+def service_history_for_installed_product(installed_product: str, history_question: str) -> str:
     """API for Service History provided the installed_product"""
-    return input('Service History Question (service_history) installed_product > ' + installed_product + ' > ' + history_question + ':  ')
+    return input('Service History Question (service_history_for_installed_product) installed_product > ' + installed_product + ' > ' + history_question + ':  ')
 
 
 @tool

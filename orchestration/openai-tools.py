@@ -24,7 +24,7 @@ from langchain.agents import AgentExecutor, create_openai_tools_agent
 from langchain_community.chat_models import AzureChatOpenAI
 from langchain_core.messages import HumanMessage, AIMessage
 
-from orchestration.tools import service_history, scheduling, knowledge, get_product_id, \
+from orchestration.tools import service_history_for_installed_product, scheduling, knowledge, get_product_id, \
     get_installed_product_by_work_order
 
 load_dotenv()
@@ -65,7 +65,7 @@ prompt = hub.pull("hwchase17/openai-tools-agent")
 system_prompt = prompt.messages[0]
 system_prompt.prompt.template = prefix + "\n\n" + system_prompt.prompt.template
 
-tools = [service_history, scheduling, knowledge, get_installed_product_by_work_order, get_product_id]
+tools = [service_history_for_installed_product, scheduling, knowledge, get_installed_product_by_work_order, get_product_id]
 
 agent = create_openai_tools_agent(tools=tools, llm=llm, prompt=prompt)
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
