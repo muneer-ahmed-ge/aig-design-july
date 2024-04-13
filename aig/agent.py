@@ -71,16 +71,18 @@ Question : Can you schedule work order WO-00000450 to the tech that has mostly w
 """
 # woQ4O000003R29MUAS
 # ipg1U000000xYk8QAE
+# poHo0000027ToWIAU
+# You have a 9:00 AM job at Good Samaritan Hospital WO-12345, a 12:30 PM job at Valley Medical Center, and WO-000789 3:00 PM job at Northridge Health Associates.
+# Sure thing. I found several potential times for the job. Please select one of the options (1) February 22nd, 2024 at 9:00 AM (2) February 24th, 2024 at 2:00 PM
 question = "what was the scheduled date of work order WO-12345 ?"
+question = "What’s on my calendar today?"
 
 chat_history = []
-user_input = question
-print("Question = " + user_input)
+user_input = input('Question > ')
 while user_input != 'exit':
-    if user_input != 'exit':
-        response = agent_executor.invoke({"input": user_input, "chat_history": chat_history})
-        # print("Question = " + response['input'])
-        print("Answer = " + response['output'])
-        chat_history.append(HumanMessage(content=response['input']))
-        chat_history.append(AIMessage(content=response['output']))
-        user_input = input('Question > ')
+    response = agent_executor.invoke({"input": user_input, "chat_history": chat_history})
+    # print("Question = " + response['input'])
+    print("Answer = " + response['output'])
+    chat_history.append(HumanMessage(content=response['input']))
+    chat_history.append(AIMessage(content=response['output']))
+    user_input = input('Question > ')
