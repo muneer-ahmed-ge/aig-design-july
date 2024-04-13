@@ -10,10 +10,10 @@ from langchain.agents import AgentExecutor, create_openai_tools_agent
 from langchain_community.chat_models.azure_openai import AzureChatOpenAI
 from langchain_core.messages import HumanMessage, AIMessage
 
-from aig.tools import query_record_by_name, get_work_order_id_by_work_order_name, \
-    get_installed_product_id_by_work_order_name, get_work_orders_by_installed_product_id, \
-    get_product_id_by_product_name, get_service_history_about_work_order_id , \
-    get_service_history_about_installed_product_id, schedule_management, knowledge_access
+from aig.tools import query_record_by_name, get_work_order_by_name, get_work_order_by_installed_product, \
+    get_installed_product_by_work_order, get_product_by_name, \
+    get_service_history_about_work_order, get_service_history_about_installed_product, \
+    get_schedule_management, get_knowledge_access
 
 load_dotenv()
 llm = AzureChatOpenAI(azure_endpoint="https://smax-ai-dev-eastus.openai.azure.com",
@@ -38,15 +38,17 @@ prompt = hub.pull("hwchase17/openai-tools-agent")
 system_prompt = prompt.messages[0]
 system_prompt.prompt.template = prefix + "\n\n" + system_prompt.prompt.template
 
-tools = [query_record_by_name, get_work_order_id_by_work_order_name, get_installed_product_id_by_work_order_name,
-         get_work_orders_by_installed_product_id, get_product_id_by_product_name, get_service_history_about_work_order_id ,
-         get_service_history_about_installed_product_id, schedule_management, knowledge_access]
-
+tools = [query_record_by_name, get_work_order_by_name, get_work_order_by_installed_product,
+         get_installed_product_by_work_order, get_product_by_name,
+         get_service_history_about_work_order, get_service_history_about_installed_product,
+         get_schedule_management, get_knowledge_access]
 
 agent = create_openai_tools_agent(tools=tools, llm=llm, prompt=prompt)
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=False)
 
 """
+Simple Conversation : https://servicemax.atlassian.net/wiki/spaces/PROD/pages/3951984679/Copilot+Chat+Examples
+
 Simple Questions
 ----------------
 Question : What is the scheduled end date of work order WO-12345 ?
