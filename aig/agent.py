@@ -10,10 +10,10 @@ from langchain.agents import AgentExecutor, create_openai_tools_agent
 from langchain_community.chat_models.azure_openai import AzureChatOpenAI
 from langchain_core.messages import HumanMessage, AIMessage
 
-from aig.tools import query_record_by_name, get_work_order_by_name, get_work_order_by_installed_product, \
+from aig.tools import query_records_by_name, get_work_order_by_name, get_work_order_by_installed_product, \
     get_installed_product_by_work_order, get_product_by_name, \
     get_service_history_about_work_order, get_service_history_about_installed_product, \
-    get_schedule_management, get_knowledge_access
+    get_schedule_management, get_knowledge_access, get_service_history
 
 load_dotenv()
 llm = AzureChatOpenAI(azure_endpoint="https://smax-ai-dev-eastus.openai.azure.com",
@@ -38,27 +38,31 @@ prompt = hub.pull("hwchase17/openai-tools-agent")
 system_prompt = prompt.messages[0]
 system_prompt.prompt.template = prefix + "\n\n" + system_prompt.prompt.template
 
-tools = [query_record_by_name, get_work_order_by_name, get_work_order_by_installed_product,
-         get_installed_product_by_work_order, get_product_by_name,
-         get_service_history_about_work_order, get_service_history_about_installed_product,
-         get_schedule_management, get_knowledge_access]
+tools_context = [get_service_history, get_schedule_management, get_knowledge_access]
 
-agent = create_openai_tools_agent(tools=tools, llm=llm, prompt=prompt)
-agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=False)
+tools_no_context = [query_records_by_name, get_work_order_by_name, get_work_order_by_installed_product,
+                    get_installed_product_by_work_order, get_product_by_name,
+                    get_service_history_about_work_order, get_service_history_about_installed_product,
+                    get_schedule_management]
+
+agent = create_openai_tools_agent(tools=tools_context, llm=llm, prompt=prompt)
+agent_executor = AgentExecutor(agent=agent, tools=tools_context, verbose=False)
 
 """
-Simple Conversation : https://servicemax.atlassian.net/wiki/spaces/PROD/pages/3951984679/Copilot+Chat+Examples
+Context Based Questions 
+-----------------------
+When was this machine installed ?
+April 20, 2023
 
-Simple Questions
-----------------
-Question : When was this machine installed ?
-Answer:
+What's my schedule this afternoon ?
+Appointment: [WO-00000155] Princess Margaret Hospital on April 10, 2024 2pm and Appointment: [WO-00008627] United Oil & Gas Corp on April 10, 2024 at 4pm
 
-Question : What is the scheduled end date of work order WO-12345 ?
-Answer: 
+What is the frequency range for the sensor on this machine ?
+120 meters
 
-Composite Questions
--------------------
+
+Non Context Based Questions 
+---------------------------
 Conversation # 1
 Question : What’s on my calendar today ?
 Answer : Appointment: [WO-00000155] Princess Margaret Hospital on April 10, 2024 2pm and Appointment: [WO-00008627] United Oil & Gas Corp on April 10, 2024 at 4pm
@@ -79,14 +83,12 @@ Question : Can you schedule work order WO-00000450 to the tech that has mostly w
 # poHo0000027ToWIAU
 # You have a 9:00 AM job at Good Samaritan Hospital WO-12345, a 12:30 PM job at Valley Medical Center, and WO-000789 3:00 PM job at Northridge Health Associates.
 # Sure thing. I found several potential times for the job. Please select one of the options (1) February 22nd, 2024 at 9:00 AM (2) February 24th, 2024 at 2:00 PM
-question = "what was the scheduled date of work order WO-12345 ?"
-question = "What’s on my calendar today?"
 
+question = ""
 chat_history = []
 user_input = input('Question > ')
 while user_input != 'exit':
     response = agent_executor.invoke({"input": user_input, "chat_history": chat_history})
-    # print("Question = " + response['input'])
     print("Answer = " + response['output'])
     chat_history.append(HumanMessage(content=response['input']))
     chat_history.append(AIMessage(content=response['output']))
