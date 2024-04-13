@@ -51,6 +51,9 @@ Simple Conversation : https://servicemax.atlassian.net/wiki/spaces/PROD/pages/39
 
 Simple Questions
 ----------------
+Question : When was this machine installed ?
+Answer:
+
 Question : What is the scheduled end date of work order WO-12345 ?
 Answer: 
 
