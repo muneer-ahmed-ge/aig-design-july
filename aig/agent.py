@@ -10,9 +10,9 @@ from langchain.agents import AgentExecutor, create_openai_tools_agent
 from langchain_community.chat_models.azure_openai import AzureChatOpenAI
 from langchain_core.messages import HumanMessage, AIMessage
 
-from aig.tools import query_records_by_name, get_work_order_by_name, get_work_order_for_installed_product, \
+from aig.tools import query_records_by_name, get_work_order_id_by_name, get_work_order_for_installed_product, \
     get_installed_product_for_work_order, get_product_by_name, \
-    get_service_history_for_work_order, get_service_history_for_installed_product, \
+    get_service_history_for_work_order_id, get_service_history_for_installed_product_id, \
     get_schedule_management, get_knowledge_access, get_service_history
 
 load_dotenv()
@@ -30,7 +30,11 @@ PROMPT_PREFIX = """
 
     The Asset Service history records consist of Work Orders, Work Details, Installed Products, and assigned technicians
 
-    Let's think step by step.   
+    Let's think step by step.
+
+    Follow these instructions strictly.
+    1. While using the tool get_service_history_for_work_order_id for input containing the work order name like 
+    WO-00008627 first call the tool get_work_order_id_by_name and then call get_service_history_for_work_order_id
 """
 
 prefix = (PROMPT_PREFIX.format(user_name="Tom"))
@@ -40,9 +44,9 @@ system_prompt.prompt.template = prefix + "\n\n" + system_prompt.prompt.template
 
 tools_context = [get_service_history, get_schedule_management, get_knowledge_access]
 
-tools_no_context = [query_records_by_name, get_work_order_by_name, get_work_order_for_installed_product,
+tools_no_context = [query_records_by_name, get_work_order_id_by_name, get_work_order_for_installed_product,
                     get_installed_product_for_work_order, get_product_by_name,
-                    get_service_history_for_work_order, get_service_history_for_installed_product,
+                    get_service_history_for_work_order_id, get_service_history_for_installed_product_id,
                     get_schedule_management]
 
 tools = tools_no_context

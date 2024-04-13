@@ -22,18 +22,18 @@ def get_knowledge_access(question: str) -> str:
 
 
 @tool
-def get_service_history_for_work_order(work_order: str, question: str) -> str:
-    """API for getting Service History about work order"""
+def get_service_history_for_work_order_id(work_order_id: str, question: str) -> str:
+    """API for getting Service History about work order id"""
     return input(
-        'get_service_history_for_work_order, work_order = ' + work_order + ' question = '
+        'get_service_history_for_work_order, work_order = ' + work_order_id + ' question = '
         + question + ' > enter answer : ')
 
 
 @tool
-def get_service_history_for_installed_product(installed_product: str, question: str) -> str:
-    """API for getting Service History about installed product"""
+def get_service_history_for_installed_product_id(installed_product_id: str, question: str) -> str:
+    """API for getting Service History about installed product id"""
     return input(
-        'get_service_history_for_installed_product, installed_product = ' + installed_product
+        'get_service_history_for_installed_product_id, installed_product_id = ' + installed_product_id
         + ' question = ' + question + ' > enter answer : ')
 
 
@@ -54,9 +54,9 @@ def query_records_by_name(name: str) -> str:
 
 
 @tool
-def get_work_order_by_name(name: str) -> str:
-    """API for getting the work order given name"""
-    return input('get_work_order_by_name, name = ' + name + ' > enter answer : ')
+def get_work_order_id_by_name(name: str) -> str:
+    """API for getting the work order id given work order name"""
+    return input('get_work_order_id_by_name, name = ' + name + ' > enter answer : ')
 
 
 @tool
