@@ -55,7 +55,7 @@ def query_records_by_name(name: str) -> str:
 
 @tool
 def get_work_order_id_by_name(name: str) -> str:
-    """API for getting the work order id given work order name"""
+    """API for getting the work order id given work order name like WO-00000000"""
     return input('get_work_order_id_by_name, name = ' + name + ' > enter answer : ')
 
 
