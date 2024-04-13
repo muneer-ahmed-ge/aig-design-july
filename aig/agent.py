@@ -45,7 +45,7 @@ tools_no_context = [query_records_by_name, get_work_order_by_name, get_work_orde
                     get_service_history_about_work_order, get_service_history_about_installed_product,
                     get_schedule_management]
 
-tools = tools_context
+tools = tools_no_context
 
 agent = create_openai_tools_agent(tools=tools, llm=llm, prompt=prompt)
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=False)
@@ -68,14 +68,10 @@ Non Context Based Questions
 Conversation # 1
 Question : What’s on my calendar today ?
 Answer : Appointment: [WO-00000155] Princess Margaret Hospital on April 10, 2024 2pm and Appointment: [WO-00008627] United Oil & Gas Corp on April 10, 2024 at 4pm
-Question : Who was was the last tech for first appointment and how to fix first appointment's red light flashing ?
-    Question : 
-    Answer : John Doe
-    Question : 
-    Answer : April 12, 2024
-    Question : 
-    Answer : Restart the machine 
-Answer :  Aggregated Answer
+Question : Who was was the last tech for first appointment and what was the problem with second appointment and how to fix first appointment's red light flashing ?
+John Doe
+Oil Leakage
+Restart the machine 
 
 Conversation # 2
 Question : Can you schedule work order WO-00000450 to the tech that has mostly worked on the Asset Xerox Printer ?
