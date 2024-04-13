@@ -22,18 +22,18 @@ def get_knowledge_access(question: str) -> str:
 
 
 @tool
-def get_service_history_about_work_order(work_order: str, question: str) -> str:
+def get_service_history_for_work_order(work_order: str, question: str) -> str:
     """API for getting Service History about work order"""
     return input(
-        'get_service_history_about_work_order, work_order = ' + work_order + ' question = '
+        'get_service_history_for_work_order, work_order = ' + work_order + ' question = '
         + question + ' > enter answer : ')
 
 
 @tool
-def get_service_history_about_installed_product(installed_product: str, question: str) -> str:
+def get_service_history_for_installed_product(installed_product: str, question: str) -> str:
     """API for getting Service History about installed product"""
     return input(
-        'get_service_history_about_installed_product, installed_product = ' + installed_product
+        'get_service_history_for_installed_product, installed_product = ' + installed_product
         + ' question = ' + question + ' > enter answer : ')
 
 
@@ -60,17 +60,17 @@ def get_work_order_by_name(name: str) -> str:
 
 
 @tool
-def get_work_order_by_installed_product(name: str) -> str:
-    """API for getting work order given installed product"""
+def get_work_order_for_installed_product(name: str) -> str:
+    """API for getting work order for installed product"""
     return input(
-        'get_work_order_by_installed_product, name = ' + name + ' > enter answer : ')
+        'get_work_order_for_installed_product, name = ' + name + ' > enter answer : ')
 
 
 @tool
-def get_installed_product_by_work_order(name: str) -> str:
+def get_installed_product_for_work_order(name: str) -> str:
     """API for getting installed product given work order"""
     return input(
-        'get_installed_product_by_work_order, name = ' + name + ' > enter answer : ')
+        'get_installed_product_for_work_order, name = ' + name + ' > enter answer : ')
 
 
 @tool

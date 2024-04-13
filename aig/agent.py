@@ -10,9 +10,9 @@ from langchain.agents import AgentExecutor, create_openai_tools_agent
 from langchain_community.chat_models.azure_openai import AzureChatOpenAI
 from langchain_core.messages import HumanMessage, AIMessage
 
-from aig.tools import query_records_by_name, get_work_order_by_name, get_work_order_by_installed_product, \
-    get_installed_product_by_work_order, get_product_by_name, \
-    get_service_history_about_work_order, get_service_history_about_installed_product, \
+from aig.tools import query_records_by_name, get_work_order_by_name, get_work_order_for_installed_product, \
+    get_installed_product_for_work_order, get_product_by_name, \
+    get_service_history_for_work_order, get_service_history_for_installed_product, \
     get_schedule_management, get_knowledge_access, get_service_history
 
 load_dotenv()
@@ -40,9 +40,9 @@ system_prompt.prompt.template = prefix + "\n\n" + system_prompt.prompt.template
 
 tools_context = [get_service_history, get_schedule_management, get_knowledge_access]
 
-tools_no_context = [query_records_by_name, get_work_order_by_name, get_work_order_by_installed_product,
-                    get_installed_product_by_work_order, get_product_by_name,
-                    get_service_history_about_work_order, get_service_history_about_installed_product,
+tools_no_context = [query_records_by_name, get_work_order_by_name, get_work_order_for_installed_product,
+                    get_installed_product_for_work_order, get_product_by_name,
+                    get_service_history_for_work_order, get_service_history_for_installed_product,
                     get_schedule_management]
 
 tools = tools_no_context
