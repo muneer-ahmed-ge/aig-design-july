@@ -9,7 +9,7 @@ httpx==0.24.1
 starlette==0.27.0
 python-dotenv~=1.0.0
 openai>=1.1
-langchain==0.1.0
+langchain==0.1.16
 langchainhub
 newrelic~=9.1.0
 transformers~=4.34.0
