@@ -69,8 +69,9 @@ Answer :  Aggregated Answer
 Conversation # 2
 Question : Can you schedule work order WO-00000450 to the tech that has mostly worked on the Asset Xerox Printer ?
 """
-
-question = "what was the installed date of Asset for WO-12345 ?"
+# woQ4O000003R29MUAS
+# ipg1U000000xYk8QAE
+question = "what was the scheduled date of work order WO-12345 ?"
 
 chat_history = []
 user_input = question

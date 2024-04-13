@@ -52,11 +52,10 @@ def get_service_history_about_installed_product_id(installed_product_id: str, qu
 
 # Schedule Management Tools
 @tool
-def schedule_management(schedule_management_question: str) -> str:
+def schedule_management(question: str) -> str:
     """API for Schedule Management"""
     return input(
-        'schedule_management schedule_management_question = '
-        + schedule_management_question + ' > enter answer : ')
+        'schedule_management schedule_management_question = ' + question + ' > enter answer : ')
 
 
 # Knowledge Access Skills Tools
