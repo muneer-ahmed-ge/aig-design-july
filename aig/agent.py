@@ -45,8 +45,10 @@ tools_no_context = [query_records_by_name, get_work_order_by_name, get_work_orde
                     get_service_history_about_work_order, get_service_history_about_installed_product,
                     get_schedule_management]
 
-agent = create_openai_tools_agent(tools=tools_context, llm=llm, prompt=prompt)
-agent_executor = AgentExecutor(agent=agent, tools=tools_context, verbose=False)
+tools = tools_context
+
+agent = create_openai_tools_agent(tools=tools, llm=llm, prompt=prompt)
+agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=False)
 
 """
 Context Based Questions 
