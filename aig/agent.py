@@ -32,6 +32,8 @@ PROMPT_PREFIX = """
     
     Pass the complete question to each tool.
     
+    Use query_records_by_name JSON result attribute "id" to call subsequent tool.
+    
     Let's think step by step.
 """
 
@@ -57,10 +59,10 @@ Non Context Based Questions
 ---------------------------
 Conversation # 1
 when was this Asset installed ?
-when was Ultrasound Logic installed ?
+when was Asset Ultrasound Logic installed ?
 when was Asset of WO-00000155 installed ?
 ipg1U000000xYk8QAE
-{"records":[{"entity_resource":"SVMXC__Installed_Product__c","entity":"SVMXC__Installed_Product__c","entity_name":"Ultrasound Logic 2 series"},{"entity_resource":"SVMXC__Installed_Product__c","entity":"SVMXC__Installed_Product__c","entity_name":"Ultrasound Logic 52 series"}]}
+{"records":[{"id":"poHo0000027ToWIAU","name":"Ultrasound Logic 2 series"},{"id":"poHo0000027ToWXYZ","name":"Ultrasound Logic 52 series"}]}
 
 Conversation # 2
 Question : What’s on my calendar today ?
