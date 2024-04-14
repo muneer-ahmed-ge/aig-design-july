@@ -29,6 +29,8 @@ PROMPT_PREFIX = """
     A technician named {user_name} is chatting with you now.
 
     The Asset Service history records consist of Work Orders, Work Details, Installed Products, and assigned technicians
+    
+    Pass the complete question to each tool
 
     Let's think step by step.
 """
@@ -51,23 +53,12 @@ agent = create_openai_tools_agent(tools=tools, llm=llm, prompt=prompt)
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=False)
 
 """
-Context Based Questions 
------------------------
-When was this machine installed ?
-April 20, 2023
-
-What's my schedule this afternoon ?
-Appointment: [WO-00000155] Princess Margaret Hospital on April 10, 2024 2pm and Appointment: [WO-00008627] United Oil & Gas Corp on April 10, 2024 at 4pm
-
-What is the frequency range for the sensor on this machine ?
-120 meters
-
-
 Non Context Based Questions 
 ---------------------------
 Conversation # 1
 when was this Asset installed ?
 when was Asset of WO-00000155 installed ?
+ipg1U000000xYk8QAE
 
 Conversation # 2
 Question : What’s on my calendar today ?
@@ -80,6 +71,16 @@ Restart the machine
 Conversation # 3
 Question : Can you schedule work order WO-00000450 to the tech that has mostly worked on the Asset Xerox Printer ?
 
+Context Based Questions 
+-----------------------
+When was this machine installed ?
+April 20, 2023
+
+What's my schedule this afternoon ?
+Appointment: [WO-00000155] Princess Margaret Hospital on April 10, 2024 2pm and Appointment: [WO-00008627] United Oil & Gas Corp on April 10, 2024 at 4pm
+
+What is the frequency range for the sensor on this machine ?
+120 meters
 """
 # woQ4O000003R29MUAS
 # ipg1U000000xYk8QAE
