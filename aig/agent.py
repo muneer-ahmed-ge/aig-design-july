@@ -66,7 +66,7 @@ when was Asset of WO-00000155 installed ?
 ipg1U000000xYk8QAE
 
 Question : What’s on my calendar today ?
-Answer : Appointment: [WO-00000155] Princess Margaret Hospital on April 10, 2024 2pm and Appointment: [WO-00008627] United Oil & Gas Corp on April 10, 2024 at 4pm
+Appointment: [WO-00000155] Princess Margaret Hospital on April 10, 2024 2pm and Appointment: [WO-00008627] United Oil & Gas Corp on April 10, 2024 at 4pm
 Question : Who was was the last tech for first appointment and what was the problem with second appointment and how to fix first appointment's red light flashing ?
 John Doe
 Oil Leakage

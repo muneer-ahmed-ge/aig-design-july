@@ -1,1 +1,1 @@
-1. get_installed_product_for_work_order, name = Ultrasound Logic 2 series > enter answer :
+1. get_installed_product_for_work_order, name = WO-00000155 > enter answer :
