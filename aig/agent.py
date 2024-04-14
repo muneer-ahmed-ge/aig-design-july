@@ -31,10 +31,6 @@ PROMPT_PREFIX = """
     The Asset Service history records consist of Work Orders, Work Details, Installed Products, and assigned technicians
 
     Let's think step by step.
-
-    Follow these instructions strictly.
-    1. While using the tool get_service_history_for_work_order_id for input containing the work order name like 
-    WO-00008627 first call the tool get_work_order_id_by_name and then call get_service_history_for_work_order_id
 """
 
 prefix = (PROMPT_PREFIX.format(user_name="Tom"))
