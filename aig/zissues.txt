@@ -1,3 +1,19 @@
+Subject Identification
+--------------------------------------
+1. Who was the last tech for WO-00000155 ?
+woQ4O000003R29MUAS
+John Doe
+2. When was its Asset installed ?
+ipg1U000000xYk8QAE
+April, 1st 2022
+3. When was its last maintenance work done ?
+ipg1U000000xYk8QAE
+May, 23rd 2023
+4. Who was the last tech for WO-00008627 ?
+ipg1U000000xYk8XYZ
+Tom Hanks
+5. How many Labor visits ?
+
 Start : Work Order woQ4O000003R29MUAS
 --------------------------------------
 1. Who was the last tech ?
