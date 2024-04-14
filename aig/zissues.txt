@@ -1,1 +1,32 @@
-1. get_installed_product_for_work_order, name = WO-00000155 > enter answer :
+Start : Work Order woQ4O000003R29MUAS
+--------------------------------------
+1. Who was the last tech ?
+Steps
+    - Query for the last tech given the Work Order
+Answer: John Doe
+
+2. When was its Asset installed ?
+Steps
+    - Find out the Installed Product given the Work Order
+    - Query against the Installed Product
+Answer: April 10, 2022
+
+3. What do the guidelines say is the minimum time you need to let the machine idle while running a calibration ?
+Steps
+    - Find out the Installed Product given the Work Order
+    - Find out the Product given Installed Product
+    - Call Knowledge Access against the Product
+Answer: 3 hours
+
+Start : Installed Product ipg1U000000xYk8QAE
+--------------------------------------------
+2. When was the recent Maintenance work done ?
+Steps
+    - Find out the latest Maintenance WorkOrder or WorkDetail given Installed Product
+    - Query against the latest Maintenance WorkOrder or WorkDetail
+Answer: June 21, 2023
+
+
+
+
+
