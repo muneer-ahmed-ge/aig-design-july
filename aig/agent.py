@@ -57,14 +57,14 @@ agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=False)
 """
 Non Context Based Questions 
 ---------------------------
-Conversation # 1
 when was this Asset installed ?
+
 when was Asset Ultrasound Logic installed ?
+{"records":[{"type":"SVMXC__Installed_Product__c","id":"poHo0000027ToWIAU","name":"Ultrasound Logic 2 series"},{"type":"SVMXC__Installed_Product__c","id":"poHo0000027ToWXYZ","name":"Ultrasound Logic 52 series"}]}
+
 when was Asset of WO-00000155 installed ?
 ipg1U000000xYk8QAE
-{"records":[{"id":"poHo0000027ToWIAU","name":"Ultrasound Logic 2 series"},{"id":"poHo0000027ToWXYZ","name":"Ultrasound Logic 52 series"}]}
 
-Conversation # 2
 Question : What’s on my calendar today ?
 Answer : Appointment: [WO-00000155] Princess Margaret Hospital on April 10, 2024 2pm and Appointment: [WO-00008627] United Oil & Gas Corp on April 10, 2024 at 4pm
 Question : Who was was the last tech for first appointment and what was the problem with second appointment and how to fix first appointment's red light flashing ?

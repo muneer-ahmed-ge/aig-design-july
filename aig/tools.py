@@ -68,7 +68,7 @@ def get_work_order_for_installed_product(name: str) -> str:
 
 @tool
 def get_installed_product_for_work_order(name: str) -> str:
-    """API for getting installed product given work order"""
+    """API for getting installed product given work order name like WO-00000000"""
     return input(
         'get_installed_product_for_work_order, name = ' + name + ' > enter answer : ')
 
