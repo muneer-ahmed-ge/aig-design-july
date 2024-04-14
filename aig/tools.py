@@ -24,14 +24,27 @@ def get_knowledge_access(question: str) -> str:
 @tool
 def get_service_history_for_work_order_id(work_order_id: str, question: str) -> str:
     """API for getting Service History about work order id"""
-    return input(
-        'get_service_history_for_work_order, work_order = ' + work_order_id + ' question = '
+    payload = '''
+    {
+      "entity_resource": "SVMXC__Service_Order__c",
+      "entity": "%s"
+    }
+    ''' % (work_order_id)
+    print("Call Service History Service with this payload \n " + payload)
+    return input('get_service_history_for_work_order, work_order = ' + work_order_id + ' question = '
         + question + ' > enter answer : ')
 
 
 @tool
 def get_service_history_for_installed_product_id(installed_product_id: str, question: str) -> str:
     """API for getting Service History about installed product id"""
+    payload = '''
+    {
+      "entity_resource": "SVMXC__Installed_Product__c",
+      "entity": "%s"
+    }
+    ''' % installed_product_id
+    print("Call Service History Service with this payload \n " + payload)
     return input(
         'get_service_history_for_installed_product_id, installed_product_id = ' + installed_product_id
         + ' question = ' + question + ' > enter answer : ')

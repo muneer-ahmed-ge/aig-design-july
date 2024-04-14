@@ -66,6 +66,10 @@ What is the frequency range for the sensor on this machine ?
 Non Context Based Questions 
 ---------------------------
 Conversation # 1
+when was this Asset installed ?
+when was Asset of WO-00000155 installed ?
+
+Conversation # 2
 Question : What’s on my calendar today ?
 Answer : Appointment: [WO-00000155] Princess Margaret Hospital on April 10, 2024 2pm and Appointment: [WO-00008627] United Oil & Gas Corp on April 10, 2024 at 4pm
 Question : Who was was the last tech for first appointment and what was the problem with second appointment and how to fix first appointment's red light flashing ?
@@ -73,8 +77,9 @@ John Doe
 Oil Leakage
 Restart the machine 
 
-Conversation # 2
+Conversation # 3
 Question : Can you schedule work order WO-00000450 to the tech that has mostly worked on the Asset Xerox Printer ?
+
 """
 # woQ4O000003R29MUAS
 # ipg1U000000xYk8QAE
