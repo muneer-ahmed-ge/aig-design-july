@@ -1,14 +1,32 @@
+    The Work Order and Installed Product are related. Asset is another name for Installed Product.
+    The Work Order name pattern is WO-00000492 and its id starts with a2D and it is 18 digit alphanumeric example a2De0000005hBeyEAE
+    The Installed Product id starts with a0N and it is 18 digit alphanumeric example a0Ne000001nDzGiEAK
+
+    If the Work Order name is WO-00000155 then its id a2De0000005gpjGEAQ and its Installed Product is a0Ne000001nDzCdEAK
+
+
+
+
 Subject Identification
 ----------------------
+
+Sample Data
+-----------
+Installed Product: Ultrasound Logic 2
+
+Installed Product Ids: a0Ne000001nDzCdEAK, a0Ne000001nDzCOEA0
+{"records":[{"id":"a0Ne000001nDzCdEAK","name":"Ultrasound Logic 2 series"},{"id":"a0Ne000001nDzCOEA0","name":"Ultrasound Logic 52 series"}]}
+
+Work Order Ids: a2De0000005gpjGEAQ, a2De0000005hBhOEAU
+{"records":[{"id":"a2De0000005gpjGEAQ","name":"WO-00000155"}]}
+{"records":[{"id":"a2De0000005gpjGEAQ","name":"WO-00000155"},{"id":"a2De0000005hBhOEAU","name":"WO-00008627"}]}
 
 Installed Product related Questions
 -----------------------------------
 1. When was Installed Product Ultrasound Logic 2 installed ?
-a0Ne000001nDzCdEAK
 April, 1st 2022
 
 2. How much Labor cost till date ?
-a0Ne000001nDzCdEAK
 $24,300
 
 3. When was its next preventative maintenance work done ?
@@ -54,6 +72,43 @@ Six
 
 
 
+"""
+Non Context Based Questions
+---------------------------
+when was this Asset installed ?
+
+when was Asset Ultrasound Logic installed ?
+{"records":[{"type":"SVMXC__Installed_Product__c","id":"poHo0000027ToWIAU","name":"Ultrasound Logic 2 series"},{"type":"SVMXC__Installed_Product__c","id":"poHo0000027ToWXYZ","name":"Ultrasound Logic 52 series"}]}
+
+when was Asset of WO-00000155 installed ?
+ipg1U000000xYk8QAE
+
+Question : What’s on my calendar today ?
+Appointment: [WO-00000155] Princess Margaret Hospital on April 10, 2024 2pm and Appointment: [WO-00008627] United Oil & Gas Corp on April 10, 2024 at 4pm
+Question : Who was was the last tech for first appointment and what was the problem with second appointment and how to fix first appointment's red light flashing ?
+John Doe
+Oil Leakage
+Restart the machine
+
+Conversation # 3
+Question : Can you schedule work order WO-00000450 to the tech that has mostly worked on the Asset Xerox Printer ?
+
+Context Based Questions
+-----------------------
+When was this machine installed ?
+April 20, 2023
+
+What's my schedule this afternoon ?
+Appointment: [WO-00000155] Princess Margaret Hospital on April 10, 2024 2pm and Appointment: [WO-00008627] United Oil & Gas Corp on April 10, 2024 at 4pm
+
+What is the frequency range for the sensor on this machine ?
+120 meters
+"""
+# woQ4O000003R29MUAS
+# ipg1U000000xYk8QAE
+# poHo0000027ToWIAU
+# You have a 9:00 AM job at Good Samaritan Hospital WO-12345, a 12:30 PM job at Valley Medical Center, and WO-000789 3:00 PM job at Northridge Health Associates.
+# Sure thing. I found several potential times for the job. Please select one of the options (1) February 22nd, 2024 at 9:00 AM (2) February 24th, 2024 at 2:00 PM
 
 
 
