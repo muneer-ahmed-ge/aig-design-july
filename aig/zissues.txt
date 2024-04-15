@@ -1,5 +1,8 @@
 Subject Identification
---------------------------------------
+----------------------
+
+Work Order related Questions
+----------------------------
 1. Who was the last tech for WO-00000155 ?
 a2De0000005gpjGEAQ
 John Doe
@@ -17,6 +20,40 @@ a0Ne000001nDyHxEAK
 January, 21st 2021
 6. How many Labor visits ?
 Six
+
+Installed Product related Questions
+-----------------------------------
+1. When was Installed Product Ultrasound Logic 2 installed ?
+a0Ne000001nDzCdEAK
+April, 1st 2022
+
+2. How much Labor cost till date ?
+a0Ne000001nDzCdEAK
+$24,300
+
+3. When was its next preventative maintenance work done ?
+a0Ne000001nDzCdEAK
+May, 23rd 2024
+
+3. When was X-Ray Machine Series 500 installed ?
+a0Ne000001nDzCOEA0
+April, 1st 2022
+
+4. How much Labor cost till date ?
+a0Ne000001nDzCOEA0
+$24,300
+
+5. When was its next preventative maintenance work done ?
+a0Ne000001nDzCOEA0
+May, 23rd 2024
+
+
+
+
+
+
+
+
 
 Start : Work Order woQ4O000003R29MUAS
 --------------------------------------
