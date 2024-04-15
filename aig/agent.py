@@ -29,6 +29,13 @@ PROMPT_PREFIX = """
     A technician named {user_name} is chatting with you now.
 
     The Asset Service history records consist of Work Orders, Work Details, Installed Products, and assigned technicians
+
+    The Work Order and Installed Product are related.
+    Asset is another name for Installed Product
+    The Work Order name pattern is WO-00000492 and its id starts with a2D and it is 18 digit alphanumeric example a2De0000005hBeyEAE 
+    The Installed Product id starts with a0N and it is 18 digit alphanumeric example a0Ne000001nDzGiEAK  
+    
+    If the Work Order name is WO-00000155 and then its id a2De0000005gpjGEAQ and its Installed Product id is a0Ne000001nDzCdEAK
     
     Pass the complete question to each tool.
     
