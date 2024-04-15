@@ -34,7 +34,7 @@ PROMPT_PREFIX = """
     The Work Order name pattern is WO-00000492 and its id starts with a2D and it is 18 digit alphanumeric example a2De0000005hBeyEAE 
     The Installed Product id starts with a0N and it is 18 digit alphanumeric example a0Ne000001nDzGiEAK  
     
-    If the Work Order name is WO-00000155 and then its id a2De0000005gpjGEAQ and its Installed Product is a0Ne000001nDzCdEAK
+    If the Work Order name is WO-00000155 then its id a2De0000005gpjGEAQ and its Installed Product is a0Ne000001nDzCdEAK
     
     Pass the complete question to each tool.
     
