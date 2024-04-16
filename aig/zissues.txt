@@ -4,7 +4,10 @@
 
     If the Work Order name is WO-00000155 then its id a2De0000005gpjGEAQ and its Installed Product is a0Ne000001nDzCdEAK
 
+What’s on my calendar today?
 You have a 9:00 AM job at Good Samaritan Hospital WO-12345, a 12:30 PM job at Valley Medical Center, and WO-000789 3:00 PM job at Northridge Health Associates
+
+Tell me more about the job at Northridge.
 
 
 What does error code 385 mean on a Logiq 500?

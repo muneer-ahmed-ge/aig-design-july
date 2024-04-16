@@ -51,7 +51,7 @@ tools = [
 ]
 
 agent = create_openai_tools_agent(tools=tools, llm=llm, prompt=prompt)
-agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=False)
+agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=False, stream_runnable=False)
 
 question = ""
 chat_history = []
