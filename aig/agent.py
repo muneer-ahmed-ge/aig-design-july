@@ -12,7 +12,7 @@ from langchain_community.chat_models.azure_openai import AzureChatOpenAI
 from langchain_core.messages import HumanMessage, AIMessage
 
 from aig.tools import query_records_by_name, get_work_order_id_by_name, get_work_order_for_installed_product, \
-    get_installed_product_for_work_order, get_product_id_for_installed_product_id, get_product_by_name, \
+    get_installed_product_for_work_order, get_product_id_for_installed_product_id, get_product_id_by_name, \
     get_service_history_for_work_order_id, get_service_history_for_installed_product_id, \
     schedule_management, get_knowledge_access
 
@@ -45,7 +45,7 @@ system_prompt.prompt.template = prefix + "\n\n" + system_prompt.prompt.template
 
 tools = [
     query_records_by_name, get_work_order_id_by_name, get_work_order_for_installed_product,
-    get_installed_product_for_work_order, get_product_id_for_installed_product_id, get_product_by_name,
+    get_installed_product_for_work_order, get_product_id_for_installed_product_id, get_product_id_by_name,
     get_service_history_for_work_order_id, get_service_history_for_installed_product_id,
     schedule_management, get_knowledge_access
 ]

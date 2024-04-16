@@ -27,10 +27,10 @@ def schedule_management(question: str) -> str:
 
 
 @tool
-def get_knowledge_access(product: str, question: str) -> str:
+def get_knowledge_access(product_id: str, question: str) -> str:
     """API for Knowledge and help documentation"""
     payload = '''knowledge access endpoint {"user_message":{"role":"user","message":"%s"},"context":{"entity":"%s","entity_resource":"Product2"}}''' % (
-    question, product)
+    question, product_id)
     return input(payload + ' > enter answer : ')
 
 
@@ -75,8 +75,8 @@ def get_product_id_for_installed_product_id(installed_product_id: str) -> str:
 
 
 @tool
-def get_product_by_name(product_name: str) -> str:
-    """API for getting product given product name"""
-    payload = '''{"tool_name":"get_product_by_name","parameters":{"product_name":"%s"}}''' % (
+def get_product_id_by_name(product_name: str) -> str:
+    """API for getting product id given product name"""
+    payload = '''{"tool_name":"get_product_id_by_name","parameters":{"product_name":"%s"}}''' % (
         product_name)
     return input(payload + ' > enter answer : ')
