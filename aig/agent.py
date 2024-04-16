@@ -33,7 +33,7 @@ PROMPT_PREFIX = """
     
     Pass the complete question to each tool.
     
-    Use query_records_by_name JSON result attribute "id" to call subsequent tool.
+    Use query_records_by_name JSON result attribute "id" to call subsequent tool if multiple results ask User in numbered bullets
     
     Let's think step by step.
 """
