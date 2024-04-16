@@ -10,6 +10,31 @@
 Subject Identification
 ----------------------
 
+Work Order Ids: a2De0000005gpjGEAQ, a2De0000005hBhOEAU
+{"records":[{"id":"a2De0000005gpjGEAQ","name":"WO-00000155"}]}
+{"records":[{"id":"a2De0000005hBhOEAU","name":"WO-00008627"}]}
+
+
+Work Order related Questions
+----------------------------
+1. Who was the last tech for WO-00000155 ?
+John Doe
+
+2. When was its Asset installed ?
+April, 1st 2022
+
+3. When was its last maintenance work done ?
+May, 23rd 2023
+
+4. Who was the last tech for WO-00008627 ?
+Tom Hanks
+
+5. When was its Asset installed ?
+January, 21st 2021
+
+6. How many Labor visits ?
+Six
+
 Sample Data
 -----------
 Installed Product: Ultrasound Logic 2
@@ -45,29 +70,7 @@ $24,300
 a0Ne000001nDzCOEA0
 May, 23rd 2024
 
-Work Order related Questions
-----------------------------
-1. Who was the last tech for WO-00000155 ?
-a2De0000005gpjGEAQ
-John Doe
 
-2. When was its Asset installed ?
-a0Ne000001nDzCdEAK
-April, 1st 2022
-
-3. When was its last maintenance work done ?
-May, 23rd 2023
-
-4. Who was the last tech for WO-00008627 ?
-a2De0000005hBhOEAU
-Tom Hanks
-
-5. When was its Asset installed ?
-a0Ne000001nDyHxEAK
-January, 21st 2021
-
-6. How many Labor visits ?
-Six
 
 
 
