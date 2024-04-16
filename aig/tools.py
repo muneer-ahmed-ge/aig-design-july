@@ -22,16 +22,16 @@ def get_service_history_for_installed_product_id(installed_product_id: str, ques
 @tool
 def schedule_management(question: str) -> str:
     """API for Schedule Management"""
-    return input(
-        'get_schedule_management question = ' + question + ' > enter answer : ')
+    payload = '''schedule_management endpoint {"user_message":{"role":"user","message":"%s"}}''' % (question)
+    return input(payload + ' > enter answer : ')
 
 
 @tool
 def get_knowledge_access(product: str, question: str) -> str:
     """API for Knowledge and help documentation"""
-    return input(
-        'get_knowledge_access, product = ' + product
-        + ' question = ' + question + ' > enter answer : ')
+    payload = '''knowledge access endpoint {"user_message":{"role":"user","message":"%s"},"context":{"entity":"%s","entity_resource":"Product2"}}''' % (
+    question, product)
+    return input(payload + ' > enter answer : ')
 
 
 # System Tools
