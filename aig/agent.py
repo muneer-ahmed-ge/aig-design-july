@@ -70,10 +70,12 @@ agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=False, stream_r
 
 question = ""
 chat_history = []
-user_input = input('Question > ')
+index = 1
+user_input = input("\nQuestion(%s) : " % (index))
 while user_input != 'exit':
     response = agent_executor.invoke({"input": user_input, "chat_history": chat_history})
-    print("Answer = " + response['output'])
+    print("Bot : " + response['output'])
     chat_history.append(HumanMessage(content=response['input']))
     chat_history.append(AIMessage(content=response['output']))
-    user_input = input('Question > ')
+    index += 1
+    user_input = input("\nQuestion(%s) : " % (index))
