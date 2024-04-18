@@ -6,13 +6,13 @@ Tell me more about the job at Northridge ?
 a2De0000005gpjGEAQ
 It’s a repair job, to fix IP-456, which is a Logiq 500 ultrasound machine, that has a display showing excessive background noise
 Has anyone calibrated the machine during any maintenance jobs in the last three years?
-No. I do not see any work orders for this machine from within the past three years. The most recent work order on this machine was from October 5th, 2017. It was a repair job to replace a cracked display stand
+No. I do not see any work orders for this machine from within the past three years.
 What do the guidelines say is the minimum time you need to let the machine idle while running a calibration?
 According to the Logiq 500 technical manual, the recommended minimum idle time during calibration is 3 hours.
 In that case, please reschedule that 3:00 PM job to later this week. I don’t have time this afternoon to run a full calibration on an ultrasound machine ?
-Sure thing. I found several potential times for the job. Please select one of the options below
-Reschedule WO-000789 to February 22nd, 2024 at 9:00 AM ?
-Work Order WO-000789 has been rescheduled
+Sure thing. I found several potential times for the job. Please select one of the options below (a) April 14, 2023 9:00AM (a) April 15, 2023 3:00PM
+Reschedule WO-00000150 to April 15, 2023 3:00PM ?
+Work Order WO-00000150 has been rescheduled
 
     The Work Order and Installed Product are related. Asset is another name for Installed Product.
     The Work Order name pattern is WO-00000492 and its id starts with a2D and it is 18 digit alphanumeric example a2De0000005hBeyEAE
