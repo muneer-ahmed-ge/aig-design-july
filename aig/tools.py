@@ -71,4 +71,4 @@ def schedule_management(question: str) -> str:
 def print_tool(tool_name: str, parameter_name: str, parameter_value: str, question=None) -> str:
     payload = '''tool_name=%s, parameters %s=%s > Rephrased Question = %s\n''' % (
     tool_name, parameter_name, parameter_value, question)
-    return input(payload + 'Answer (enter) : ')
+    return input(payload + '>>Answer (enter) : ')
