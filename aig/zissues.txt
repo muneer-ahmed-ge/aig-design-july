@@ -15,6 +15,47 @@ Sure thing. I found several potential times for the job. Please select one of th
 Reschedule WO-00000150 to April 15, 2023 3:00PM ?
 Work Order WO-00000150 has been rescheduled
 
+Questions from https://servicemax.atlassian.net/browse/AIG-617
+--------------------------------------------------------------
+Entity = WO
+>> What is the scheduled end date of work order WO-12345 ?
+- Since LLM knows that scheduled end date is on WO, it calls getServiceHistoryAboutWO.
+a2De0000005gpjGEAQ
+April 20, 2024
+
+Entity = WO
+>> What is the installed date of the asset of work order WO-12345 ?
+- Since LLM knows that installed date is a field on asset, it calls getIPByWO, then getServiceHistoryAboutWO.
+a2De0000005gpjGEAQ
+April 20, 2024
+
+Entity = WO
+>> Tell me about work order WO-12345
+- Since LLM knows it’s about WO, it calls getServiceHistoryAboutWO.
+
+Entity = WO
+>> Question = Tell me about the work done for asset of WO-12345.
+- Since LLM knows it’s about asset, it calls getIPByWO, then getServiceHistoryAboutWO.
+
+Entity = WO
+>> List all the work order for asset of WO-12345.
+- Since LLM knows it’s about asset, it calls getIPByWO, then call getWOByIP, then call getServiceHistoryAboutWO.
+
+Entity = IP
+>> What is the installed date of installed product A-1234?
+- Since LLM knows it’s about asset, it calls getServiceHistoryAboutIP.
+
+Entity = IP
+>> Tell me about installed product A-1234.
+- Since LLM knows it’s about asset, it calls getServiceHistoryAboutIP.
+
+Entity = IP
+>> List all the work done for Installed product A-1234.
+- Since LLM knows it’s about WO, it calls getWOByIP and then getServiceHistoryAboutWO.
+
+Entity = IP
+>> Who worked on installed product A-1234 the most?
+- Since LLM knows it’s about asset, it calls getServiceHistoryAboutIP.
 
 
 
