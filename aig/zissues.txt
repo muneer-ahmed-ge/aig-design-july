@@ -1,11 +1,12 @@
 Scenario # 1
 ------------
-What’s on my calendar today?
+What’s on my calendar on April 17 ?
 John Doe your schedule for today is as follows: Appointment1:'[WO-00000100] at Good Samaritan Hospital' on April 17, 2PM and Appointment2: '[WO-00000150] at Northridge Health Associates' on April 17, 3PM
 Tell me more about the job at Northridge ?
 a2De0000005gpjGEAQ
 It’s a repair job, to fix IP-456, which is a Logiq 500 ultrasound machine, that has a display showing excessive background noise
 Has anyone calibrated the machine during any maintenance jobs in the last three years?
+a0Ne000001nDzCdEAK
 No. I do not see any work orders for this machine from within the past three years.
 What do the guidelines say is the minimum time you need to let the machine idle while running a calibration?
 a0Ne000001nDzCdEAK
