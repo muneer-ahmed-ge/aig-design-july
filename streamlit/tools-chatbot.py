@@ -5,11 +5,13 @@ import streamlit as st
 
 # https://github.com/streamlit/llm-examples/blob/main/Chatbot.py
 # requirements.txt: requests streamlit
+# Demo Org
+# david.lambert@5544trial.com / Service1
 
-TOKEN = "00D1U0000013dOX!ARYAQDb1Ryvru_4EJhn.DY8rN2OYQ7MCYFhnczmmGzpHz9T8qYxC6IioWdUZ9wHaHX_LldssePfQHPkmGZ9IjATdt7b.TkQ5"
+TOKEN = "00DHo000001ZYE2!AQsAQMRhFLZShHM2PvNp_xY88Gl86HqNOHaGZ5GY_9kvtR0X5hRl_jOcz8GNjZzPEqLWVNt4zzxd_rRLlGWat2ZWA4ZGY_WJ"
 
 with st.sidebar:
-    work_order = st.text_input("Work Order ID", key="work_order", value="00UKi000001vGgAMAU")
+    work_order = st.text_input("Work Order ID", key="work_order", value="a1gHo0000027UAnIAM")
     installed_product = st.text_input("Installed Product ID", key="installed_product") #, value="a0PDK000003H0Xj2AK")
     org_type = st.text_input("Org Type", key="org_type", value="Production")
     access_token = st.text_input("Access Token", key="access_token", value=TOKEN)
