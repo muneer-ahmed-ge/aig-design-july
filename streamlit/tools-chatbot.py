@@ -3,15 +3,21 @@ import random
 import requests
 import streamlit as st
 
+# run the chatbot
+# /Users/muahmed/MT/ai/aig-design-july/venv/bin/python -m streamlit run /Users/muahmed/MT/ai/aig-design-july/streamlit/tools-chatbot.py
+
 # https://github.com/streamlit/llm-examples/blob/main/Chatbot.py
 # requirements.txt: requests streamlit
 # Demo Org
 # david.lambert@5544trial.com / Service1
 
-TOKEN = "00DHo000001ZYE2!AQsAQMRhFLZShHM2PvNp_xY88Gl86HqNOHaGZ5GY_9kvtR0X5hRl_jOcz8GNjZzPEqLWVNt4zzxd_rRLlGWat2ZWA4ZGY_WJ"
+# Nathan Org
+# nathan.ma@verify.com / Svmx1243
+
+TOKEN = "00D1U0000013dOX!ARYAQAOgLJgejWBP3MNO4xtZ9sV0ZsS96OS7AgsptgCXH9_eA9z_0PREv1NjBU_6gjexAqcYsvBCyXJ8b333ep3oMgRju_3P"
 
 with st.sidebar:
-    work_order = st.text_input("Work Order ID", key="work_order", value="a1gHo0000027UAnIAM")
+    work_order = st.text_input("Work Order ID", key="work_order", value="a1g1U000000xYl9QAE")
     installed_product = st.text_input("Installed Product ID", key="installed_product") #, value="a0PDK000003H0Xj2AK")
     org_type = st.text_input("Org Type", key="org_type", value="Production")
     access_token = st.text_input("Access Token", key="access_token", value=TOKEN)
