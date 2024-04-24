@@ -14,10 +14,10 @@ import streamlit as st
 # Nathan Org
 # nathan.ma@verify.com / Svmx1243
 
-TOKEN = "00D1U0000013dOX!ARYAQAOgLJgejWBP3MNO4xtZ9sV0ZsS96OS7AgsptgCXH9_eA9z_0PREv1NjBU_6gjexAqcYsvBCyXJ8b333ep3oMgRju_3P"
+TOKEN = "00D1U0000013dOX!ARYAQJmgAjzv0Tq5L1D0SUjuamxwrdVIKA6biwTDq5JD.9ioGbsHDLKdeqliPL9VRpkz6BBYHMw16lQQlNT8OY2vN58rLtMq"
 
 with st.sidebar:
-    work_order = st.text_input("Work Order ID", key="work_order", value="a1g1U000000xYl9QAE")
+    work_order = st.text_input("Work Order ID", key="work_order") #, value="a1g1U000000xYl9QAE")
     installed_product = st.text_input("Installed Product ID", key="installed_product") #, value="a0PDK000003H0Xj2AK")
     org_type = st.text_input("Org Type", key="org_type", value="Production")
     access_token = st.text_input("Access Token", key="access_token", value=TOKEN)
@@ -42,9 +42,9 @@ if user_question := st.chat_input():
     if not access_token:
         st.info("missing access token")
         st.stop()
-    if not work_order and not installed_product:
-        st.info("missing entity")
-        st.stop()
+    # if not work_order and not installed_product:
+    #     st.info("missing entity")
+    #     st.stop()
 
     st.session_state["conversation"].append({
         "talker_id": "me",
