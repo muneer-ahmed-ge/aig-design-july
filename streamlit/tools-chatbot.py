@@ -14,11 +14,11 @@ import streamlit as st
 # Nathan Org
 # nathan.ma@verify.com / Svmx1243
 
-TOKEN = "00D1U0000013dOX!ARYAQJmgAjzv0Tq5L1D0SUjuamxwrdVIKA6biwTDq5JD.9ioGbsHDLKdeqliPL9VRpkz6BBYHMw16lQQlNT8OY2vN58rLtMq"
+TOKEN = "00DHo000001ZYE2!AQsAQMxrZk1xljr2DAXZqN3usip8CqBtKdwaz3DiQFE1_JimSBBeJ1GfdbZ6WgaP5a2TEYRV9eTzrhuX.3Jp4kLTSNP5Nsdl"
 
 with st.sidebar:
-    work_order = st.text_input("Work Order ID", key="work_order") #, value="a1g1U000000xYl9QAE")
-    installed_product = st.text_input("Installed Product ID", key="installed_product") #, value="a0PDK000003H0Xj2AK")
+    work_order = st.text_input("Work Order ID", key="work_order", value="a1gHo0000027UAnIAM")
+    installed_product = st.text_input("Installed Product ID", key="installed_product", value="")
     org_type = st.text_input("Org Type", key="org_type", value="Production")
     access_token = st.text_input("Access Token", key="access_token", value=TOKEN)
     aig_url = st.text_input("AIG URL", key="aig_url", value="http://localhost:8000/v1/agent")

@@ -4,14 +4,14 @@ import streamlit as st
 # https://github.com/streamlit/llm-examples/blob/main/Chatbot.py
 # requirements.txt: requests streamlit
 
-TOKEN = "00De0000005T6vw!AQIAQMUP9jC3Nr0BalOQjO5I8Y85ZpoCGWmCFH0VBbWXISMtndaCAjWlE3B1oMa6iBXhJh62oIFIcBYAXSKQ84oKe1DhZFqG"
+TOKEN = "00DHo000001ZYE2!AQsAQMxrZk1xljr2DAXZqN3usip8CqBtKdwaz3DiQFE1_JimSBBeJ1GfdbZ6WgaP5a2TEYRV9eTzrhuX.3Jp4kLTSNP5Nsdl"
 
 with st.sidebar:
-    work_order = st.text_input("Work Order ID", key="work_order") #, value="a1g1U000000xYk8QAE")
-    installed_product = st.text_input("Installed Product ID", key="installed_product", value="a0PDK000003H0Xj2AK")
-    org_type = st.text_input("Org Type", key="org_type", value="Sandbox")
+    work_order = st.text_input("Work Order ID", key="work_order", value="a1gHo0000027UAnIAM")
+    installed_product = st.text_input("Installed Product ID", key="installed_product", value="")
+    org_type = st.text_input("Org Type", key="org_type", value="Production")
     access_token = st.text_input("Access Token", key="access_token", value=TOKEN)
-    aig_url = st.text_input("AIG URL", key="aig_url", value="http://localhost:8002/service-history")
+    aig_url = st.text_input("AIG URL", key="aig_url", value="http://localhost:8000/v1/chat/completions")
 
 st.title("💬 Chatbot")
 
@@ -49,7 +49,7 @@ if user_question := st.chat_input():
         'Content-Type': 'application/json',
         'X-Auth-Origin': org_type,
         'X-Auth-Type': 'salesforce',
-        'X-Salesforce-Instance-URL': 'https://d0v0000009vlfeae--part2.sandbox.my.salesforce.com',
+        'X-Salesforce-Instance-URL': 'https://svmx-se-5544.my.salesforce.com',
         'x-conversation-id': '123',
         'from': 'SvmxPtc@4450'
     }
